@@ -6,7 +6,6 @@
 <title>Bakwas Baate 2.0 - Gaming Hub</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-<!-- Embedded CSS Styling -->
 <style>
 /* Base Styles & Variables */
 :root {
@@ -186,7 +185,6 @@ background-color: var(--accent-color);
 color: #000;
 }
 
-/* --- DEVICE COMPATIBILITY CHECKER STYLES --- */
 .ram-checker-box {
 background-color: var(--card-bg);
 border: 1px solid var(--accent-color);
@@ -347,7 +345,6 @@ background-color: #ffb74d;
 color: #000;
 }
 
-/* --- RATING, LIKE & COMMENTS STYLES --- */
 .card-interactions {
 border-top: 1px solid var(--border-color);
 padding-top: 12px;
@@ -549,7 +546,6 @@ margin: 15px 0;
 width: 100%;
 }
 
-/* Footer */
 footer {
 text-align: center;
 padding: 20px;
@@ -558,7 +554,6 @@ color: var(--text-secondary);
 font-size: 0.9rem;
 }
 
-/* Mobile Responsiveness */
 @media (max-width: 768px) {
 .nav-links {
 display: none;
@@ -636,7 +631,6 @@ max-width: 400px;
 <p>Select your favorite game and download files safely.</p>
 </div>
 
-<!-- Search and Filter Control -->
 <div class="controls">
 <input type="text" id="search-input" placeholder="Search games...">
 
@@ -648,7 +642,6 @@ max-width: 400px;
 <button class="filter-btn" data-category="adventure">Adventure</button>
 </div>
 
-<!-- NEW: Phone RAM Compatibility Filter -->
 <div class="ram-checker-box">
 <label for="user-ram-select"><i class="fas fa-mobile-alt"></i> Select Your Phone RAM:</label>
 <select id="user-ram-select">
@@ -661,7 +654,6 @@ max-width: 400px;
 </div>
 </div>
 
-<!-- Games Grid -->
 <div class="games-grid" id="games-container">
 
 <!-- 1: Red Dead Redemption -->
@@ -704,7 +696,7 @@ max-width: 400px;
 </div>
 </div>
 
-<!-- 2: Minecraft Pocket Edition MOD -->
+<!-- 2: Minecraft PE -->
 <div class="game-card" data-category="adventure" data-id="game-minecraft" data-min-ram="2">
 <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='220' viewBox='0 0 400 220'><defs><linearGradient id='mc' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' stop-color='%232e7d32'/><stop offset='50%' stop-color='%231b5e20'/><stop offset='100%' stop-color='%23003300'/></linearGradient></defs><rect width='100%' height='100%' fill='url(%23mc)'/><rect x='150' y='50' width='100' height='100' fill='%234caf50' stroke='%231b5e20' stroke-width='4'/><rect x='170' y='70' width='20' height='20' fill='%23000000'/><rect x='210' y='70' width='20' height='20' fill='%23000000'/><rect x='185' y='90' width='30' height='40' fill='%23000000'/><rect x='175' y='110' width='10' height='20' fill='%23000000'/><rect x='215' y='110' width='10' height='20' fill='%23000000'/><text x='50%' y='82%' dominant-baseline='middle' text-anchor='middle' fill='%23ffffff' font-family='sans-serif' font-size='20' font-weight='900' letter-spacing='1'>MINECRAFT PE</text><text x='50%' y='93%' dominant-baseline='middle' text-anchor='middle' fill='%2381c784' font-family='sans-serif' font-size='12' font-weight='bold'>MOD MENU UNLOCKED</text></svg>" alt="Minecraft Pocket Edition">
 <div class="card-body">
@@ -784,7 +776,7 @@ max-width: 400px;
 </div>
 </div>
 
-<!-- 4: GTA San Andreas Spider-Man Mod -->
+<!-- 4: GTA SA Spider-Man Mod -->
 <div class="game-card" data-category="open-world" data-id="game-gta-spiderman" data-min-ram="3">
 <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='220' viewBox='0 0 400 220'><defs><linearGradient id='spiderman' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' stop-color='%23b71c1c'/><stop offset='50%' stop-color='%23880e4f'/><stop offset='100%' stop-color='%230d47a1'/></linearGradient></defs><rect width='100%' height='100%' fill='url(%23spiderman)'/><circle cx='200' cy='110' r='85' fill='none' stroke='%23ffffff' stroke-width='2' opacity='0.25'/><path d='M200 40 L200 180 M130 110 L270 110 M150 60 L250 160 M150 160 L250 60' stroke='%23ffffff' stroke-width='1' opacity='0.2'/><text x='50%' y='36%' dominant-baseline='middle' text-anchor='middle' fill='%23ffffff' font-family='Georgia, serif' font-size='22' font-weight='bold'>GTA SAN ANDREAS</text><text x='50%' y='58%' dominant-baseline='middle' text-anchor='middle' fill='%23ffeb3b' font-family='sans-serif' font-size='16' font-weight='900' letter-spacing='1'>SPIDER-MAN MOD</text><text x='50%' y='78%' dominant-baseline='middle' text-anchor='middle' fill='%2300e676' font-family='sans-serif' font-size='12' font-weight='bold'>v2.00 AML + FLA DATA</text></svg>" alt="GTA San Andreas Spider-Man Mod">
 <div class="card-body">
@@ -1325,8 +1317,19 @@ max-width: 400px;
 <p>© 2026 Bakwas Baate 2.0. All Rights Reserved.</p>
 </footer>
 
-<!-- Embedded JavaScript Logic -->
-<script>
+<!-- Firebase Realtime Database Integration -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+import { getDatabase, ref, onValue, set, runTransaction, push } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+
+// Firebase Configuration using your database URL
+const firebaseConfig = {
+databaseURL: "https://bakwas-baten--game-default-rtdb.firebaseio.com/"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
 document.addEventListener("DOMContentLoaded", () => {
 const mobileMenu = document.getElementById("mobile-menu");
 const navLinks = document.querySelector(".nav-links");
@@ -1342,7 +1345,6 @@ const searchInput = document.getElementById("search-input");
 const ramSelect = document.getElementById("user-ram-select");
 const gameCards = document.querySelectorAll(".game-card");
 
-// Main Filter & RAM Checker Logic
 function filterGames() {
 const activeCategory = document.querySelector(".filter-btn.active").getAttribute("data-category");
 const searchTerm = searchInput ? searchInput.value.toLowerCase() : "";
@@ -1357,7 +1359,6 @@ const compatBadge = card.querySelector(".compat-badge");
 const matchesCategory = (activeCategory === "all" || cardCategory === activeCategory);
 const matchesSearch = cardTitle.includes(searchTerm);
 
-// Dynamic RAM Compatibility Check
 if (selectedRAM > 0) {
 if (selectedRAM >= minRam) {
 compatBadge.className = "compat-badge smooth";
@@ -1394,35 +1395,67 @@ const contactForm = document.getElementById("contactForm");
 if (contactForm) {
 contactForm.addEventListener("submit", (e) => {
 e.preventDefault();
+const name = document.getElementById("name").value;
+const email = document.getElementById("email").value;
+const message = document.getElementById("message").value;
+
+push(ref(db, 'contacts'), {
+name: name,
+email: email,
+message: message,
+timestamp: Date.now()
+});
+
 alert("Thank you for your message! We will get back to you soon.");
 contactForm.reset();
 });
 }
 
-document.addEventListener("keydown", (e) => {
-if (e.key === "Escape") {
-closeModal();
+// Real-time Likes, Ratings, and Comments Sync
+gameCards.forEach(card => {
+const gameId = card.getAttribute("data-id");
+const stars = card.querySelectorAll('.star');
+const likeBtn = card.querySelector('.like-btn');
+const likeCountEl = card.querySelector('.like-count');
+const likeTextEl = card.querySelector('.like-text');
+const commentInput = card.querySelector('.comment-input-box input');
+const addCommentBtn = card.querySelector('.send-comment-btn');
+const commentsList = card.querySelector('.comments-list');
+
+const gameRef = ref(db, games/${gameId}`);
+
+// Real-time Data Listener from Firebase
+onValue(gameRef, (snapshot) => {
+const data = snapshot.val() || {};
+
+// Update Likes Count
+likeCountEl.innerText = data.likes || 0;
+
+// Update Comments List
+commentsList.innerHTML = "";
+if (data.comments) {
+Object.values(data.comments).forEach(c => {
+const item = document.createElement('div');
+item.className = 'comment-item';
+item.innerText = c.text;
+commentsList.appendChild(item);
+});
 }
 });
 
-// Interactive Systems (Rating, Like, Comments)
-gameCards.forEach(card => {
-const gameId = card.getAttribute("data-id");
-
-// 1. Rating System
-const stars = card.querySelectorAll('.star');
-let currentRating = localStorage.getItem(``${gameId}_rating`) || 0;
-updateStars(stars, currentRating);
+// Rating Event (Local Storage for User Choice)
+let userRating = localStorage.getItem(${gameId}_rating`) || 0;
+updateStarsUI(stars, userRating);
 
 stars.forEach(star => {
 star.addEventListener('click', () => {
-currentRating = star.getAttribute('data-value');
-localStorage.setItem(${gameId}_rating`, currentRating);
-updateStars(stars, currentRating);
+userRating = star.getAttribute('data-value');
+localStorage.setItem(``${gameId}_rating`, userRating);
+updateStarsUI(stars, userRating);
 });
 });
 
-function updateStars(starsList, rating) {
+function updateStarsUI(starsList, rating) {
 starsList.forEach(star => {
 if (star.getAttribute('data-value') <= rating) {
 star.classList.add('active');
@@ -1432,83 +1465,47 @@ star.classList.remove('active');
 });
 }
 
-// 2. Like System
-const likeBtn = card.querySelector('.like-btn');
-const likeCountEl = card.querySelector('.like-count');
-const likeTextEl = card.querySelector('.like-text');
-
-let likes = parseInt(localStorage.getItem(``${gameId}_likes)) || 0; let isLiked = localStorage.getItem(${gameId}_user_liked) === 'true';
-
-updateLikeUI();
-
-likeBtn.addEventListener('click', () => {
-if (isLiked) {
-likes--;
-isLiked = false;
-} else {
-likes++;
-isLiked = true;
-}
-localStorage.setItem(``${gameId}_likes, likes); localStorage.setItem(${gameId}_user_liked, isLiked);
-updateLikeUI();
-});
-
-function updateLikeUI() {
-likeCountEl.innerText = likes;
+// Like System using Firebase Transaction
+let isLiked = localStorage.getItem(${gameId}_user_liked`) === 'true';
 if (isLiked) {
 likeBtn.classList.add('liked');
 likeTextEl.innerText = "Liked";
-} else {
-likeBtn.classList.remove('liked');
-likeTextEl.innerText = "Like";
-}
 }
 
-// 3. Comment System
-const commentInput = card.querySelector('.comment-input-box input');
-const addCommentBtn = card.querySelector('.send-comment-btn');
-const commentsList = card.querySelector('.comments-list');
-
-let comments = JSON.parse(localStorage.getItem(``${gameId}_comments`)) || [];
-renderComments();
-
-addCommentBtn.addEventListener('click', addComment);
-commentInput.addEventListener('keypress', (e) => {
-if (e.key === 'Enter') addComment();
+likeBtn.addEventListener('click', () => {
+const likesRef = ref(db, games/${gameId}/likes); if (isLiked) { runTransaction(likesRef, (currentLikes) =&gt; (currentLikes || 1) - 1); isLiked = false; likeBtn.classList.remove('liked'); likeTextEl.innerText = "Like"; } else { runTransaction(likesRef, (currentLikes) =&gt; (currentLikes || 0) + 1); isLiked = true; likeBtn.classList.add('liked'); likeTextEl.innerText = "Liked"; } localStorage.setItem(${gameId}_user_liked, isLiked);
 });
 
-function addComment() {
+// Comment System (Push to Firebase)
+addCommentBtn.addEventListener('click', submitComment);
+commentInput.addEventListener('keypress', (e) => {
+if (e.key === 'Enter') submitComment();
+});
+
+function submitComment() {
 const text = commentInput.value.trim();
 if (text !== "") {
-comments.push(text);
-localStorage.setItem(${gameId}_comments, JSON.stringify(comments));
-renderComments();
+const commentsRef = ref(db, games/${gameId}/comments`);
+push(commentsRef, {
+text: text,
+timestamp: Date.now()
+});
 commentInput.value = "";
 }
 }
-
-function renderComments() {
-commentsList.innerHTML = "";
-comments.forEach(comment => {
-const item = document.createElement('div');
-item.className = 'comment-item';
-item.innerText = comment;
-commentsList.appendChild(item);
-});
-}
 });
 });
 
-function openDownloadModal(title, size, downloadUrl) {
+window.openDownloadModal = function(title, size, downloadUrl) {
 document.getElementById("modal-game-title").innerText = title;
 document.getElementById("modal-file-size").innerText = size;
 document.getElementById("modal-download-link").setAttribute("href", downloadUrl);
 document.getElementById("downloadModal").style.display = "flex";
-}
+};
 
-function closeModal() {
+window.closeModal = function() {
 document.getElementById("downloadModal").style.display = "none";
-}
+};
 
 window.onclick = function(event) {
 const modal = document.getElementById("downloadModal");
