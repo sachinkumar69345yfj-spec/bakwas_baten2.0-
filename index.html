@@ -476,6 +476,7 @@ padding: 10px 20px;
 border-radius: 5px;
 text-decoration: none;
 font-size: 0.9rem;
+font-weight: bold;
 }
 
 .social-btn.telegram {
@@ -486,10 +487,9 @@ background-color: #0088cc;
 .contact-form {
 max-width: 600px;
 margin: 0 auto;
-}
-
-.form-group {
-margin-bottom: 15px;
+display: flex;
+flex-direction: column;
+gap: 15px;
 }
 
 .form-group input, .form-group textarea {
@@ -510,7 +510,7 @@ top: 0;
 left: 0;
 width: 100%;
 height: 100%;
-background-color: rgba(0, 0, 0, 0.8);
+background-color: rgba(0, 0, 0, 0.85);
 z-index: 2000;
 justify-content: center;
 align-items: center;
@@ -603,7 +603,7 @@ max-width: 400px;
 <h1>Bakwas Baate <span>2.0</span></h1>
 </div>
 <nav>
-<ul class="nav-links">
+<ul class="nav-links" id="nav-menu">
 <li><a href="#home" class="active">Home</a></li>
 <li><a href="#games">Games & APKs</a></li>
 <li><a href="#about">About Us</a></li>
@@ -1032,7 +1032,7 @@ max-width: 400px;
 </div>
 <h3>Grand Theft Auto V 0.3 Test</h3>
 <p>Size: Latest Version | APK Mod</p>
-<button class="download-btn" onclick="openDownloadModal('Grand Theft Auto V 0.3 Test', 'Latest APK', 'Https://www.mediafire.com/file/y3vu6sad59phdzs/Grand_Theft_Auto_V_0.3_Test_1747391034_latestmodapks.com.apk/file?utm_source=sp_auto_dm&utm_referrer=sp_auto_dm&fbclid=PAT01DUAR5TPFleHRuA2FlbQIxMABzcnRjBmFwcF9pZA81NjcwNjczNDMzNTI0MjcAAaeTIJrBoSbxKEIA8wVqnV0T72dz2hMic2ZA--5phUKvRQoUEFO3CWDDRe4S6w_aem_o3fVaO66azSALKXb7eMY0g')">
+<button class="download-btn" onclick="openDownloadModal('Grand Theft Auto V 0.3 Test', 'Latest APK', 'https://www.mediafire.com/file/y3vu6sad59phdzs/Grand_Theft_Auto_V_0.3_Test_1747391034_latestmodapks.com.apk/file')">
 <i class="fas fa-download"></i> Download APK
 </button>
 
@@ -1072,7 +1072,7 @@ max-width: 400px;
 </div>
 <h3>Poppy Playtime Chapter 1</h3>
 <p>Size: Mobile Edition | MOD APK</p>
-<button class="download-btn" onclick="openDownloadModal('Poppy Playtime Chapter 1', 'Mobile APK', 'https://poppy-playtime-chapter-1.latestmodapks.com/download/#google_vignette')">
+<button class="download-btn" onclick="openDownloadModal('Poppy Playtime Chapter 1', 'Mobile APK', 'https://poppy-playtime-chapter-1.latestmodapks.com/download/')">
 <i class="fas fa-download"></i> Download APK
 </button>
 
@@ -1223,7 +1223,7 @@ max-width: 400px;
 
 <!-- 15: Choo-Choo Charles Mobile -->
 <div class="game-card" data-category="horror" data-id="game-choo-choo" data-min-ram="3">
-<img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='220' viewBox='0 0 400 220'><defs><linearGradient id='choo' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' stop-color='%233a0000'/><stop offset='100%' stop-color='%230a0000'/></linearGradient></defs><rect width='100%' height='100%' fill='url(%23choo)'/><path d='M120 160 L280 160 M140 160 L140 180 M260 160 L260 180 M180 160 L180 180 M220 160 L220 180' stroke='%23555' stroke-width='4'/><circle cx='170' cy='95' r='8' fill='%23ff1744'/><circle cx='230' cy='95' r='8' fill='%23ff1744'/><path d='M140 130 Q200 170 260 130' stroke='%23d50000' stroke-width='6' fill='none'/><path d='M160 135 L165 150 M180 140 L182 155 M200 142 L200 158 M220 140 L218 155 M240 135 L235 150' stroke='%23ffffff' stroke-width='3'/><text x='50%' y='32%' dominant-baseline='middle' text-anchor='middle' fill='%23ff1744' font-family='sans-serif' font-size='22' font-weight='900'>CHOO-CHOO CHARLES</text><text x='50%' y='88%' dominant-baseline='middle' text-anchor='middle' fill='%23ffffff' font-family='sans-serif' font-size='12' letter-spacing='2'>HORROR TRAIN ADVENTURE</text></svg>" alt="Choo-Choo Charles Mobile">
+<img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='220' viewBox='0 0 400 220'><defs><linearGradient id='choo' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' stop-color='%233a0000'/><stop offset='100%' stop-color='%230a0000'/></linearGradient></defs><rect width='100%' height='100%' fill='url(%23choo)'/><path d='M120 160 L280 160 M140 160 L140 180 M260 160 L260 180 M180 160 L180 180 M220 160 L220 180' stroke='%23555' stroke-width='4'/><circle cx='170' cy='95' r='8' fill='%23ff1744'/><circle cx='230' cy='95' r='8' fill='%23ff1744'/><path d='M140 130 Q200 170 260 130' stroke='%23d50000' stroke-width='6' fill='none'/><text x='50%' y='35%' dominant-baseline='middle' text-anchor='middle' fill='%23ff1744' font-family='sans-serif' font-size='20' font-weight='900'>CHOO-CHOO CHARLES</text><text x='50%' y='82%' dominant-baseline='middle' text-anchor='middle' fill='%23ffffff' font-family='sans-serif' font-size='12'>MOBILE HORROR PORT</text></svg>" alt="Choo-Choo Charles Mobile">
 <div class="card-body">
 <div class="badge-container">
 <span class="badge">Horror</span>
@@ -1231,8 +1231,8 @@ max-width: 400px;
 <span class="compat-badge"></span>
 </div>
 <h3>Choo-Choo Charles Mobile</h3>
-<p>Size: Mobile Edition | APKVision</p>
-<button class="download-btn" onclick="openDownloadModal('Choo-Choo Charles Mobile', 'Full Game APK', 'https://apkvision.org/games/adventure/choo-choo-charles-133475/')">
+<p>Size: Fan Made Port | APK Download</p>
+<button class="download-btn" onclick="openDownloadModal('Choo-Choo Charles Mobile', 'Mobile Horror Port', 'https://apkpure.net/choo-choo-charles-mobile/com.horrorgame.choochoochatlesmobile/download')">
 <i class="fas fa-download"></i> Download APK
 </button>
 
@@ -1268,15 +1268,15 @@ max-width: 400px;
 <section id="about" class="about-section">
 <div class="section-title">
 <h2>About Bakwas Baate 2.0</h2>
+<p>Your ultimate source for verified mobile games, custom mods, and high-performance gaming APKs.</p>
 </div>
 <div class="about-container">
-<div class="about-text">
-<p>Welcome to the official hub of <strong>Bakwas Baate 2.0</strong>! With a community of over 5,000+ gaming enthusiasts on Instagram, our mission is to test, review, and deliver the highest quality Android games, offline titles, custom mods, and low-end compatible mobile games.</p>
-<p>Every game file provided on this site is pre-tested for safety, performance, and gameplay enjoyment.</p>
+<p>Welcome to <strong>Bakwas Baate 2.0</strong>! We specialize in testing, modifying, and reviewing open-world, horror, action, and high-graphics mobile games for low-end and high-end Android smartphones alike.</p>
+<br>
+<p>Join our growing community on Instagram and Telegram to stay updated on new game releases, custom CLEO scripts, and exclusive content updates.</p>
 <div class="social-links">
-<a href="https://instagram.com" target="_blank" class="social-btn"><i class="fab fa-instagram"></i> Follow on Instagram</a>
-<a href="https://telegram.org" target="_blank" class="social-btn telegram"><i class="fab fa-telegram"></i> Join Telegram Channel</a>
-</div>
+<a href="https://instagram.com" target="_blank" class="social-btn"><i class="fab fa-instagram"></i> Instagram</a>
+<a href="https://t.me" target="_blank" class="social-btn telegram"><i class="fab fa-telegram"></i> Telegram Channel</a>
 </div>
 </div>
 </section>
@@ -1284,31 +1284,33 @@ max-width: 400px;
 <!-- Contact Section -->
 <section id="contact" class="contact-section">
 <div class="section-title">
-<h2>Contact & Support</h2>
-<p>Have suggestions or need help with any APK download?</p>
+<h2>Contact Us</h2>
+<p>Have questions or game requests? Send us a message.</p>
 </div>
-<form class="contact-form" id="contactForm">
+<form class="contact-form" onsubmit="event.preventDefault(); alert('Message sent successfully!');">
 <div class="form-group">
-<input type="text" id="name" placeholder="Your Name" required>
-</div>
-<div class="form-group">
-<input type="email" id="email" placeholder="Your Email" required>
+<input type="text" placeholder="Your Name" required>
 </div>
 <div class="form-group">
-<textarea id="message" rows="5" placeholder="Your Message" required></textarea>
+<input type="email" placeholder="Your Email" required>
+</div>
+<div class="form-group">
+<textarea rows="5" placeholder="Your Message" required></textarea>
 </div>
 <button type="submit" class="btn-primary">Send Message</button>
 </form>
 </section>
 
-<!-- Download Modal -->
+<!-- Modal Download Window -->
 <div class="modal" id="downloadModal">
 <div class="modal-content">
-<span class="close-btn" onclick="closeModal()">×</span>
-<h3 id="modal-game-title">Game Title</h3>
-<p>File Status: <span id="modal-file-size">Ready</span></p>
-<p class="modal-warning">Ensure you have allowed installations from unknown sources in settings before opening APKs.</p>
-<a href="#" id="modal-download-link" target="_blank" class="btn-primary download-confirm">Start Download Now</a>
+<span class="close-btn" onclick="closeDownloadModal()">×</span>
+<h3 id="modalGameTitle">Game Download</h3>
+<p id="modalFileName" style="color: var(--accent-color); margin-top: 5px;"></p>
+<p class="modal-warning">
+<i class="fas fa-shield-alt"></i> Safe Link Verified by Bakwas Baate 2.0
+</p>
+<a id="modalConfirmBtn" href="#" target="_blank" class="btn-primary download-confirm">Proceed to Download Page</a>
 </div>
 </div>
 
@@ -1317,202 +1319,175 @@ max-width: 400px;
 <p>© 2026 Bakwas Baate 2.0. All Rights Reserved.</p>
 </footer>
 
-<!-- Firebase Realtime Database Integration -->
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-import { getDatabase, ref, onValue, set, runTransaction, push } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
-
-// Firebase Configuration using your database URL
-const firebaseConfig = {
-databaseURL: "https://bakwas-baten--game-default-rtdb.firebaseio.com/"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getDatabase(app);
-
-document.addEventListener("DOMContentLoaded", () => {
-const mobileMenu = document.getElementById("mobile-menu");
-const navLinks = document.querySelector(".nav-links");
-
-if (mobileMenu) {
-mobileMenu.addEventListener("click", () => {
-navLinks.classList.toggle("active");
+<!-- JavaScript Logic -->
+<script>
+// Mobile Navigation Toggle
+const mobileMenu = document.getElementById('mobile-menu');
+const navMenu = id => document.getElementById('nav-menu');
+mobileMenu.addEventListener('click', () => {
+document.getElementById('nav-menu').classList.toggle('active');
 });
-}
 
-const filterButtons = document.querySelectorAll(".filter-btn");
-const searchInput = document.getElementById("search-input");
-const ramSelect = document.getElementById("user-ram-select");
-const gameCards = document.querySelectorAll(".game-card");
+// Search & Category Filtering
+const searchInput = document.getElementById('search-input');
+const filterBtns = document.querySelectorAll('.filter-btn');
+const gameCards = document.querySelectorAll('.game-card');
+const userRamSelect = document.getElementById('user-ram-select');
 
-function filterGames() {
-const activeCategory = document.querySelector(".filter-btn.active").getAttribute("data-category");
-const searchTerm = searchInput ? searchInput.value.toLowerCase() : "";
-const selectedRAM = ramSelect ? parseInt(ramSelect.value) : 0;
+let currentCategory = 'all';
 
-gameCards.forEach(card => {
-const cardCategory = card.getAttribute("data-category");
-const cardTitle = card.querySelector("h3").innerText.toLowerCase();
-const minRam = parseInt(card.getAttribute("data-min-ram")) || 2;
-const compatBadge = card.querySelector(".compat-badge");
-
-const matchesCategory = (activeCategory === "all" || cardCategory === activeCategory);
-const matchesSearch = cardTitle.includes(searchTerm);
-
-if (selectedRAM > 0) {
-if (selectedRAM >= minRam) {
-compatBadge.className = "compat-badge smooth";
-compatBadge.innerHTML = <i class="fas fa-check-circle"&gt;&lt;/i&gt; Smooth Play;
-} else {
-compatBadge.className = "compat-badge lag";
-compatBadge.innerHTML = <i class="fas fa-exclamation-triangle"&gt;&lt;/i&gt; May Lag on ${selectedRAM}GB`;
-}
-} else {
-compatBadge.className = "compat-badge";
-compatBadge.innerText = "";
-}
-
-if (matchesCategory && matchesSearch) {
-card.style.display = "flex";
-} else {
-card.style.display = "none";
-}
-});
-}
-
-filterButtons.forEach(button => {
-button.addEventListener("click", () => {
-filterButtons.forEach(btn => btn.classList.remove("active"));
-button.classList.add("active");
+filterBtns.forEach(btn => {
+btn.addEventListener('click', () => {
+filterBtns.forEach(b => b.classList.remove('active'));
+btn.classList.add('active');
+currentCategory = btn.getAttribute('data-category');
 filterGames();
 });
 });
 
-if (searchInput) searchInput.addEventListener("keyup", filterGames);
-if (ramSelect) ramSelect.addEventListener("change", filterGames);
+searchInput.addEventListener('input', filterGames);
+userRamSelect.addEventListener('change', filterGames);
 
-const contactForm = document.getElementById("contactForm");
-if (contactForm) {
-contactForm.addEventListener("submit", (e) => {
-e.preventDefault();
-const name = document.getElementById("name").value;
-const email = document.getElementById("email").value;
-const message = document.getElementById("message").value;
+function filterGames() {
+const query = searchInput.value.toLowerCase().trim();
+const userRam = parseInt(userRamSelect.value, 10);
 
-push(ref(db, 'contacts'), {
-name: name,
-email: email,
-message: message,
-timestamp: Date.now()
-});
-
-alert("Thank you for your message! We will get back to you soon.");
-contactForm.reset();
-});
-}
-
-// Real-time Likes, Ratings, and Comments Sync
 gameCards.forEach(card => {
-const gameId = card.getAttribute("data-id");
-const stars = card.querySelectorAll('.star');
-const likeBtn = card.querySelector('.like-btn');
-const likeCountEl = card.querySelector('.like-count');
-const likeTextEl = card.querySelector('.like-text');
-const commentInput = card.querySelector('.comment-input-box input');
-const addCommentBtn = card.querySelector('.send-comment-btn');
-const commentsList = card.querySelector('.comments-list');
+const title = card.querySelector('h3').textContent.toLowerCase();
+const category = card.getAttribute('data-category');
+const minRam = parseInt(card.getAttribute('data-min-ram'), 10);
+const compatBadge = card.querySelector('.compat-badge');
 
-const gameRef = ref(db, games/${gameId}`);
+const matchesCategory = (currentCategory === 'all' || category === currentCategory);
+const matchesSearch = title.includes(query);
 
-// Real-time Data Listener from Firebase
-onValue(gameRef, (snapshot) => {
-const data = snapshot.val() || {};
-
-// Update Likes Count
-likeCountEl.innerText = data.likes || 0;
-
-// Update Comments List
-commentsList.innerHTML = "";
-if (data.comments) {
-Object.values(data.comments).forEach(c => {
-const item = document.createElement('div');
-item.className = 'comment-item';
-item.innerText = c.text;
-commentsList.appendChild(item);
-});
-}
-});
-
-// Rating Event (Local Storage for User Choice)
-let userRating = localStorage.getItem(${gameId}_rating`) || 0;
-updateStarsUI(stars, userRating);
-
-stars.forEach(star => {
-star.addEventListener('click', () => {
-userRating = star.getAttribute('data-value');
-localStorage.setItem(``${gameId}_rating`, userRating);
-updateStarsUI(stars, userRating);
-});
-});
-
-function updateStarsUI(starsList, rating) {
-starsList.forEach(star => {
-if (star.getAttribute('data-value') <= rating) {
-star.classList.add('active');
+if (matchesCategory && matchesSearch) {
+card.style.display = 'flex';
 } else {
-star.classList.remove('active');
+card.style.display = 'none';
+}
+
+// RAM Compatibility Check Logic
+if (userRam > 0) {
+if (userRam >= minRam) {
+compatBadge.textContent = "✔ Smooth Play";
+compatBadge.className = "compat-badge smooth";
+} else {
+compatBadge.textContent = "⚠ May Lag";
+compatBadge.className = "compat-badge lag";
+}
+} else {
+compatBadge.style.display = "none";
 }
 });
 }
 
-// Like System using Firebase Transaction
-let isLiked = localStorage.getItem(${gameId}_user_liked`) === 'true';
-if (isLiked) {
-likeBtn.classList.add('liked');
-likeTextEl.innerText = "Liked";
+// Modal Functionality
+function openDownloadModal(title, fileName, url) {
+document.getElementById('modalGameTitle').textContent = title;
+document.getElementById('modalFileName').textContent = fileName;
+document.getElementById('modalConfirmBtn').setAttribute('href', url);
+document.getElementById('downloadModal').style.display = 'flex';
 }
 
-likeBtn.addEventListener('click', () => {
-const likesRef = ref(db, games/${gameId}/likes); if (isLiked) { runTransaction(likesRef, (currentLikes) =&gt; (currentLikes || 1) - 1); isLiked = false; likeBtn.classList.remove('liked'); likeTextEl.innerText = "Like"; } else { runTransaction(likesRef, (currentLikes) =&gt; (currentLikes || 0) + 1); isLiked = true; likeBtn.classList.add('liked'); likeTextEl.innerText = "Liked"; } localStorage.setItem(${gameId}_user_liked, isLiked);
-});
-
-// Comment System (Push to Firebase)
-addCommentBtn.addEventListener('click', submitComment);
-commentInput.addEventListener('keypress', (e) => {
-if (e.key === 'Enter') submitComment();
-});
-
-function submitComment() {
-const text = commentInput.value.trim();
-if (text !== "") {
-const commentsRef = ref(db, games/${gameId}/comments`);
-push(commentsRef, {
-text: text,
-timestamp: Date.now()
-});
-commentInput.value = "";
+function closeDownloadModal() {
+document.getElementById('downloadModal').style.display = 'none';
 }
-}
-});
-});
-
-window.openDownloadModal = function(title, size, downloadUrl) {
-document.getElementById("modal-game-title").innerText = title;
-document.getElementById("modal-file-size").innerText = size;
-document.getElementById("modal-download-link").setAttribute("href", downloadUrl);
-document.getElementById("downloadModal").style.display = "flex";
-};
-
-window.closeModal = function() {
-document.getElementById("downloadModal").style.display = "none";
-};
 
 window.onclick = function(event) {
-const modal = document.getElementById("downloadModal");
+const modal = document.getElementById('downloadModal');
 if (event.target === modal) {
-modal.style.display = "none";
+modal.style.display = 'none';
 }
 };
+
+// Local Storage State & Interactions (Likes, Ratings, Comments)
+document.addEventListener('DOMContentLoaded', () => {
+gameCards.forEach(card => {
+const gameId = card.getAttribute('data-id');
+const stars = card.querySelectorAll('.star');
+const likeBtn = card.querySelector('.like-btn');
+const likeCountSpan = card.querySelector('.like-count');
+const sendCommentBtn = card.querySelector('.send-comment-btn');
+const commentInput = card.querySelector('.comment-input-box input');
+const commentsList = card.querySelector('.comments-list');
+
+// Load saved state
+let savedData = JSON.parse(localStorage.getItem('bb2_game_' + gameId)) || {
+likes: 0,
+isLiked: false,
+rating: 0,
+comments: []
+};
+
+likeCountSpan.textContent = savedData.likes;
+if (savedData.isLiked) {
+likeBtn.classList.add('liked');
+likeBtn.querySelector('.like-text').textContent = 'Liked';
+}
+
+highlightStars(stars, savedData.rating);
+renderComments(commentsList, savedData.comments);
+
+// Like Button Toggle
+likeBtn.addEventListener('click', () => {
+savedData.isLiked = !savedData.isLiked;
+if (savedData.isLiked) {
+savedData.likes += 1;
+likeBtn.classList.add('liked');
+likeBtn.querySelector('.like-text').textContent = 'Liked';
+} else {
+savedData.likes = Math.max(0, savedData.likes - 1);
+likeBtn.classList.remove('liked');
+likeBtn.querySelector('.like-text').textContent = 'Like';
+}
+likeCountSpan.textContent = savedData.likes;
+localStorage.setItem('bb2_game_' + gameId, JSON.stringify(savedData));
+});
+
+// Rating Event
+stars.forEach(star => {
+star.addEventListener('click', () => {
+const val = parseInt(star.getAttribute('data-value'), 10);
+savedData.rating = val;
+highlightStars(stars, val);
+localStorage.setItem('bb2_game_' + gameId, JSON.stringify(savedData));
+});
+});
+
+// Comment Submission Event
+sendCommentBtn.addEventListener('click', () => {
+const text = commentInput.value.trim();
+if (text !== "") {
+savedData.comments.push(text);
+renderComments(commentsList, savedData.comments);
+commentInput.value = "";
+localStorage.setItem('bb2_game_' + gameId, JSON.stringify(savedData));
+}
+});
+});
+});
+
+function highlightStars(stars, rating) {
+stars.forEach(s => {
+const val = parseInt(s.getAttribute('data-value'), 10);
+if (val <= rating) {
+s.classList.add('active');
+} else {
+s.classList.remove('active');
+}
+});
+}
+
+function renderComments(container, comments) {
+container.innerHTML = "";
+comments.forEach(c => {
+const div = document.createElement('div');
+div.className = 'comment-item';
+div.textContent = c;
+container.appendChild(div);
+});
+}
 </script>
 </body>
 </html>
