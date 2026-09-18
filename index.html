@@ -237,6 +237,11 @@ font-size: 0.9rem;
 margin-bottom: 15px;
 }
 
+.download-btn-group {
+display: flex;
+gap: 10px;
+}
+
 .download-btn {
 width: 100%;
 background-color: transparent;
@@ -247,10 +252,21 @@ border-radius: 5px;
 cursor: pointer;
 font-weight: bold;
 transition: all 0.3s;
+text-align: center;
 }
 
 .download-btn:hover {
 background-color: var(--accent-color);
+color: #000;
+}
+
+.download-btn.secondary {
+color: #ffb74d;
+border-color: #ffb74d;
+}
+
+.download-btn.secondary:hover {
+background-color: #ffb74d;
 color: #000;
 }
 
@@ -278,26 +294,10 @@ padding: 10px 20px;
 border-radius: 5px;
 text-decoration: none;
 font-size: 0.9rem;
-font-weight: bold;
-transition: opacity 0.3s;
-}
-
-.social-btn:hover {
-opacity: 0.9;
 }
 
 .social-btn.telegram {
 background-color: #0088cc;
-}
-
-.download-help-note {
-margin-top: 20px;
-padding: 15px;
-background-color: rgba(0, 230, 118, 0.05);
-border-left: 3px solid var(--accent-color);
-border-radius: 4px;
-color: var(--text-secondary);
-font-size: 0.95rem;
 }
 
 /* Contact Section */
@@ -402,6 +402,10 @@ display: block;
 .hero-content h2 {
 font-size: 1.8rem;
 }
+
+.download-btn-group {
+flex-direction: column;
+}
 }
 </style>
 </head>
@@ -450,92 +454,31 @@ font-size: 1.8rem;
 <button class="filter-btn" data-category="action">Action</button>
 <button class="filter-btn" data-category="horror">Horror</button>
 <button class="filter-btn" data-category="adventure">Adventure</button>
-<button class="filter-btn" data-category="simulation">Simulation</button>
 </div>
 </div>
 
 <!-- Games Grid -->
 <div class="games-grid" id="games-container">
 
-<!-- Game Card 1: Takashi Ninja Warrior -->
-<div class="game-card" data-category="action">
-<img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='220' viewBox='0 0 400 220'><defs><linearGradient id='takashi' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' stop-color='%23800000'/><stop offset='100%' stop-color='%231a0000'/></linearGradient></defs><rect width='100%' height='100%' fill='url(%23takashi)'/><path d='M80 180 L200 40 L320 180 Z' fill='none' stroke='%23ff3333' stroke-width='4' opacity='0.3'/><path d='M100 160 L300 60' stroke='%23ffffff' stroke-width='6' stroke-linecap='round'/><path d='M300 60 L280 50' stroke='%23ffffff' stroke-width='4'/><text x='50%' y='40%' dominant-baseline='middle' text-anchor='middle' fill='%23ffffff' font-family='sans-serif' font-size='22' font-weight='900'>TAKASHI</text><text x='50%' y='65%' dominant-baseline='middle' text-anchor='middle' fill='%23ff3333' font-family='sans-serif' font-size='14' font-weight='bold' letter-spacing='3'>NINJA WARRIOR</text></svg>" alt="Takashi Ninja Warrior">
-<div class="card-body">
-<span class="badge">Action</span>
-<h3>Takashi Ninja Warrior</h3>
-<p>Size: Latest APK | APKPure</p>
-<button class="download-btn" onclick="openDownloadModal('Takashi Ninja Warrior', 'Original APK', 'https://apkpure.net/takashi-ninja-warrior/com.hg.takashi.ninjagames/download')">
-<i class="fas fa-download"></i> Download APK
-</button>
-</div>
-</div>
-
-<!-- Game Card 2: My Virtual Girlfriend Shinob -->
-<div class="game-card" data-category="simulation">
-<img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='220' viewBox='0 0 400 220'><defs><linearGradient id='shinob' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' stop-color='%234a148c'/><stop offset='100%' stop-color='%231a0033'/></linearGradient></defs><rect width='100%' height='100%' fill='url(%23shinob)'/><circle cx='200' cy='110' r='65' fill='none' stroke='%23ea80fc' stroke-width='3' opacity='0.5'/><path d='M200 70 C180 50 150 70 150 95 C150 120 200 150 200 150 C200 150 250 120 250 95 C250 70 220 50 200 70 Z' fill='%23ff4081' opacity='0.6'/><text x='50%' y='40%' dominant-baseline='middle' text-anchor='middle' fill='%23ffffff' font-family='sans-serif' font-size='18' font-weight='bold'>MY VIRTUAL GIRLFRIEND</text><text x='50%' y='68%' dominant-baseline='middle' text-anchor='middle' fill='%23ea80fc' font-family='sans-serif' font-size='16' font-weight='900'>SHINOB</text></svg>" alt="My Virtual Girlfriend Shinob">
-<div class="card-body">
-<span class="badge">Simulation</span>
-<h3>My Virtual Girlfriend Shinob</h3>
-<p>Size: MOD APK | LiteAPKs</p>
-<button class="download-btn" onclick="openDownloadModal('My Virtual Girlfriend Shinob', 'MOD APK', 'https://liteapks.com/my-virtual-girlfriend-shinob.html')">
-<i class="fas fa-download"></i> Download APK
-</button>
-</div>
-</div>
-
-<!-- Game Card 3: GTA V Prologue -->
+<!-- Updated Card: GTA San Andreas Spider-Man Mod -->
 <div class="game-card" data-category="open-world">
-<img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='220' viewBox='0 0 400 220'><defs><linearGradient id='gtavp' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' stop-color='%231b5e20'/><stop offset='100%' stop-color='%23051b07'/></linearGradient></defs><rect width='100%' height='100%' fill='url(%23gtavp)'/><text x='50%' y='42%' dominant-baseline='middle' text-anchor='middle' fill='%23ffffff' font-family='sans-serif' font-size='24' font-weight='900'>GTA V PROLOGUE</text><text x='50%' y='65%' dominant-baseline='middle' text-anchor='middle' fill='%2300e676' font-family='sans-serif' font-size='14' font-weight='bold' letter-spacing='2'>FAN MADE EDITION</text></svg>" alt="GTA V Prologue">
+<img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='220' viewBox='0 0 400 220'><defs><linearGradient id='spiderman' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' stop-color='%23b71c1c'/><stop offset='50%' stop-color='%23880e4f'/><stop offset='100%' stop-color='%230d47a1'/></linearGradient></defs><rect width='100%' height='100%' fill='url(%23spiderman)'/><circle cx='200' cy='110' r='85' fill='none' stroke='%23ffffff' stroke-width='2' opacity='0.25'/><path d='M200 40 L200 180 M130 110 L270 110 M150 60 L250 160 M150 160 L250 60' stroke='%23ffffff' stroke-width='1' opacity='0.2'/><text x='50%' y='36%' dominant-baseline='middle' text-anchor='middle' fill='%23ffffff' font-family='Georgia, serif' font-size='22' font-weight='bold'>GTA SAN ANDREAS</text><text x='50%' y='58%' dominant-baseline='middle' text-anchor='middle' fill='%23ffeb3b' font-family='sans-serif' font-size='16' font-weight='900' letter-spacing='1'>SPIDER-MAN MOD</text><text x='50%' y='78%' dominant-baseline='middle' text-anchor='middle' fill='%2300e676' font-family='sans-serif' font-size='12' font-weight='bold'>v2.00 AML + FLA DATA</text></svg>" alt="GTA San Andreas Spider-Man Mod">
 <div class="card-body">
 <span class="badge">Open World</span>
-<h3>GTA V Prologue Mobile</h3>
-<p>Size: Fan Made | LiteAPKs</p>
-<button class="download-btn" onclick="openDownloadModal('GTA V Prologue Mobile', 'Full Fan Game', 'https://liteapks.com/download/gta-v-prologue-78252')">
-<i class="fas fa-download"></i> Download APK
+<h3>GTA San Andreas Spider-Man Mod</h3>
+<p>Includes Modded APK (AML 1.2.4 + FLA 7.6) & OBB Data</p>
+<div class="download-btn-group">
+<button class="download-btn" onclick="openDownloadModal('GTA SA Spider-Man Mod APK', 'GTASA 2.00 AML1.2.4 FLA7.6.apk', 'https://www.mediafire.com/file/0sk8ghetllk15oh/GTASA+2.00+AML1.2.4+FLA7.6.apk/file')">
+<i class="fas fa-download"></i> APK File
+</button>
+<button class="download-btn secondary" onclick="openDownloadModal('GTA SA Spider-Man OBB Data', 'com.rockstargames.gtasa.zip', 'https://www.mediafire.com/file/c8h46oey4b6fwtp/com.rockstargames.gtasa.zip/file')">
+<i class="fas fa-file-archive"></i> OBB Data
 </button>
 </div>
 </div>
-
-<!-- Game Card 4: GTA IV Mobile Edition -->
-<div class="game-card" data-category="open-world">
-<img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='220' viewBox='0 0 400 220'><defs><linearGradient id='gta4' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' stop-color='%2337474f'/><stop offset='100%' stop-color='%23102027'/></linearGradient></defs><rect width='100%' height='100%' fill='url(%23gta4)'/><text x='50%' y='42%' dominant-baseline='middle' text-anchor='middle' fill='%23ffb300' font-family='Georgia, serif' font-size='26' font-weight='bold'>GTA IV MOBILE</text><text x='50%' y='65%' dominant-baseline='middle' text-anchor='middle' fill='%23ffffff' font-family='sans-serif' font-size='13' letter-spacing='2'>SOFTONIC EDITION</text></svg>" alt="GTA IV Mobile Edition">
-<div class="card-body">
-<span class="badge">Open World</span>
-<h3>GTA IV Mobile Edition</h3>
-<p>Size: Android Port | Softonic</p>
-<button class="download-btn" onclick="openDownloadModal('GTA IV Mobile Edition', 'Mobile Port APK', 'https://gta-4-mobile-edition-1.en.softonic.com/android')">
-<i class="fas fa-download"></i> Download APK
-</button>
-</div>
 </div>
 
-<!-- Game Card 5: Life is Strange MOD -->
-<div class="game-card" data-category="adventure">
-<img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='220' viewBox='0 0 400 220'><defs><linearGradient id='lis' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' stop-color='%23006064'/><stop offset='100%' stop-color='%23002228'/></linearGradient></defs><rect width='100%' height='100%' fill='url(%23lis)'/><path d='M200 40 C120 40 120 180 200 180 C280 180 280 40 200 40 Z' fill='none' stroke='%2380deea' stroke-width='2' opacity='0.4'/><text x='50%' y='42%' dominant-baseline='middle' text-anchor='middle' fill='%23ffffff' font-family='sans-serif' font-size='22' font-weight='bold'>LIFE IS STRANGE</text><text x='50%' y='65%' dominant-baseline='middle' text-anchor='middle' fill='%2380deea' font-family='sans-serif' font-size='13' letter-spacing='2'>FULL UNLOCKED MOD</text></svg>" alt="Life is Strange">
-<div class="card-body">
-<span class="badge">Adventure</span>
-<h3>Life is Strange MOD</h3>
-<p>Size: All Episodes Unlocked | AN1</p>
-<button class="download-btn" onclick="openDownloadModal('Life is Strange MOD', 'Unlocked MOD APK', 'https://an1.com/4785-life-is-strange-mod.html')">
-<i class="fas fa-download"></i> Download APK
-</button>
-</div>
-</div>
-
-<!-- Game Card 6: Minecraft Pocket Edition MOD -->
-<div class="game-card" data-category="adventure">
-<img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='220' viewBox='0 0 400 220'><defs><linearGradient id='mcpe' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' stop-color='%2333691e'/><stop offset='100%' stop-color='%230f2b00'/></linearGradient></defs><rect width='100%' height='100%' fill='url(%23mcpe)'/><rect x='150' y='60' width='100' height='100' fill='none' stroke='%2376ff03' stroke-width='4'/><rect x='170' y='80' width='20' height='20' fill='%2376ff03'/><rect x='210' y='80' width='20' height='20' fill='%2376ff03'/><text x='50%' y='38%' dominant-baseline='middle' text-anchor='middle' fill='%23ffffff' font-family='sans-serif' font-size='22' font-weight='900'>MINECRAFT PE</text><text x='50%' y='82%' dominant-baseline='middle' text-anchor='middle' fill='%2376ff03' font-family='sans-serif' font-size='13' font-weight='bold'>LATEST MOD VERSION</text></svg>" alt="Minecraft Pocket Edition MOD">
-<div class="card-body">
-<span class="badge">Adventure</span>
-<h3>Minecraft PE MOD</h3>
-<p>Size: Latest MOD | LatestModAPKs</p>
-<button class="download-btn" onclick="openDownloadModal('Minecraft PE MOD', 'Latest MOD APK', 'https://minecraft-pocket-edition-mod.latestmodapks.com/download/')">
-<i class="fas fa-download"></i> Download APK
-</button>
-</div>
-</div>
-
-<!-- Game Card 7: Resident Evil 4 Mobile Edition -->
+<!-- Game Card 1: Resident Evil 4 Mobile Edition -->
 <div class="game-card" data-category="horror">
 <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='220' viewBox='0 0 400 220'><defs><linearGradient id='re4' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' stop-color='%232b0000'/><stop offset='100%' stop-color='%23050000'/></linearGradient></defs><rect width='100%' height='100%' fill='url(%23re4)'/><path d='M200 40 L210 90 L260 100 L210 110 L200 160 L190 110 L140 100 L190 90 Z' fill='%23ff1744' opacity='0.3'/><text x='50%' y='48%' dominant-baseline='middle' text-anchor='middle' fill='%23ffffff' font-family='sans-serif' font-size='22' font-weight='bold'>RESIDENT EVIL 4</text><text x='50%' y='68%' dominant-baseline='middle' text-anchor='middle' fill='%23ff1744' font-family='sans-serif' font-size='14' font-weight='600'>MOBILE EDITION</text></svg>" alt="Resident Evil 4 Mobile">
 <div class="card-body">
@@ -548,7 +491,7 @@ font-size: 1.8rem;
 </div>
 </div>
 
-<!-- Game Card 8: Grand Theft Auto V 0.3 Test -->
+<!-- Game Card 2: Grand Theft Auto V 0.3 Test -->
 <div class="game-card" data-category="open-world">
 <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='220' viewBox='0 0 400 220'><defs><linearGradient id='gtav' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' stop-color='%231b5e20'/><stop offset='100%' stop-color='%23002200'/></linearGradient></defs><rect width='100%' height='100%' fill='url(%23gtav)'/><circle cx='200' cy='110' r='70' fill='none' stroke='%2300e676' stroke-width='2' opacity='0.4'/><text x='50%' y='45%' dominant-baseline='middle' text-anchor='middle' fill='%23ffffff' font-family='sans-serif' font-size='24' font-weight='900'>GTA V MOBILE</text><text x='50%' y='65%' dominant-baseline='middle' text-anchor='middle' fill='%2300e676' font-family='sans-serif' font-size='14' font-weight='bold'>0.3 TEST BUILD</text></svg>" alt="Grand Theft Auto V Mobile">
 <div class="card-body">
@@ -561,7 +504,7 @@ font-size: 1.8rem;
 </div>
 </div>
 
-<!-- Game Card 9: Poppy Playtime Chapter 1 -->
+<!-- Game Card 3: Poppy Playtime Chapter 1 -->
 <div class="game-card" data-category="horror">
 <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='220' viewBox='0 0 400 220'><defs><linearGradient id='poppy' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' stop-color='%230d47a1'/><stop offset='100%' stop-color='%23001040'/></linearGradient></defs><rect width='100%' height='100%' fill='url(%23poppy)'/><circle cx='160' cy='80' r='12' fill='%23ffffff'/><circle cx='240' cy='80' r='12' fill='%23ffffff'/><path d='M140 130 Q200 180 260 130' stroke='%23ff1744' stroke-width='8' fill='none'/><text x='50%' y='35%' dominant-baseline='middle' text-anchor='middle' fill='%2329b6f6' font-family='sans-serif' font-size='20' font-weight='bold'>POPPY PLAYTIME</text><text x='50%' y='82%' dominant-baseline='middle' text-anchor='middle' fill='%23ffffff' font-family='sans-serif' font-size='13'>CHAPTER 1</text></svg>" alt="Poppy Playtime Chapter 1">
 <div class="card-body">
@@ -574,7 +517,7 @@ font-size: 1.8rem;
 </div>
 </div>
 
-<!-- Game Card 10: GTA San Andreas Mobile -->
+<!-- Game Card 4: GTA San Andreas Mobile -->
 <div class="game-card" data-category="open-world">
 <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='220' viewBox='0 0 400 220'><defs><linearGradient id='gtasa' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' stop-color='%23e65100'/><stop offset='100%' stop-color='%23212121'/></linearGradient></defs><rect width='100%' height='100%' fill='url(%23gtasa)'/><text x='50%' y='45%' dominant-baseline='middle' text-anchor='middle' fill='%23ffb74d' font-family='Georgia, serif' font-size='26' font-weight='bold'>GTA SAN ANDREAS</text><text x='50%' y='68%' dominant-baseline='middle' text-anchor='middle' fill='%23ffffff' font-family='sans-serif' font-size='13' letter-spacing='3'>REALISTIC GRAPHICS MOD</text></svg>" alt="GTA San Andreas">
 <div class="card-body">
@@ -587,7 +530,7 @@ font-size: 1.8rem;
 </div>
 </div>
 
-<!-- Game Card 11: Love College Brawl Hint -->
+<!-- Game Card 5: Love College Brawl Hint -->
 <div class="game-card" data-category="action">
 <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='220' viewBox='0 0 400 220'><defs><linearGradient id='cb' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' stop-color='%23880e4f'/><stop offset='100%' stop-color='%23311b92'/></linearGradient></defs><rect width='100%' height='100%' fill='url(%23cb)'/><path d='M200 60 L215 90 L250 95 L225 120 L230 155 L200 138 L170 155 L175 120 L150 95 L185 90 Z' fill='%23ff4081' opacity='0.5'/><text x='50%' y='48%' dominant-baseline='middle' text-anchor='middle' fill='%23ffffff' font-family='sans-serif' font-size='20' font-weight='bold'>COLLEGE BRAWL</text><text x='50%' y='68%' dominant-baseline='middle' text-anchor='middle' fill='%23ff80ab' font-family='sans-serif' font-size='14'>HINT %26 GUIDE APK</text></svg>" alt="Love College Brawl Hint">
 <div class="card-body">
@@ -600,7 +543,7 @@ font-size: 1.8rem;
 </div>
 </div>
 
-<!-- Game Card 12: Hitman: Blood Money Reprisal -->
+<!-- Game Card 6: Hitman: Blood Money Reprisal -->
 <div class="game-card" data-category="action">
 <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='220' viewBox='0 0 400 220'><defs><linearGradient id='hitman' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' stop-color='%23212121'/><stop offset='100%' stop-color='%23000000'/></linearGradient></defs><rect width='100%' height='100%' fill='url(%23hitman)'/><circle cx='200' cy='110' r='50' fill='none' stroke='%23d50000' stroke-width='4'/><line x1='200' y1='40' x2='200' y2='180' stroke='%23d50000' stroke-width='2'/><line x1='130' y1='110' x2='270' y2='110' stroke='%23d50000' stroke-width='2'/><text x='50%' y='45%' dominant-baseline='middle' text-anchor='middle' fill='%23ffffff' font-family='sans-serif' font-size='22' font-weight='bold'>HITMAN</text><text x='50%' y='65%' dominant-baseline='middle' text-anchor='middle' fill='%23ff5252' font-family='sans-serif' font-size='13' letter-spacing='2'>BLOOD MONEY REPRISAL</text></svg>" alt="Hitman: Blood Money Reprisal">
 <div class="card-body">
@@ -613,7 +556,7 @@ font-size: 1.8rem;
 </div>
 </div>
 
-<!-- Game Card 13: Choo-Choo Charles Mobile -->
+<!-- Game Card 7: Choo-Choo Charles Mobile -->
 <div class="game-card" data-category="horror">
 <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='220' viewBox='0 0 400 220'><defs><linearGradient id='choo' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' stop-color='%233a0000'/><stop offset='100%' stop-color='%230a0000'/></linearGradient></defs><rect width='100%' height='100%' fill='url(%23choo)'/><path d='M120 160 L280 160 M140 160 L140 180 M260 160 L260 180 M180 160 L180 180 M220 160 L220 180' stroke='%23555' stroke-width='4'/><circle cx='170' cy='95' r='8' fill='%23ff1744'/><circle cx='230' cy='95' r='8' fill='%23ff1744'/><path d='M140 130 Q200 170 260 130' stroke='%23d50000' stroke-width='6' fill='none'/><path d='M160 135 L165 150 M180 140 L182 155 M200 142 L200 158 M220 140 L218 155 M240 135 L235 150' stroke='%23ffffff' stroke-width='3'/><text x='50%' y='32%' dominant-baseline='middle' text-anchor='middle' fill='%23ff1744' font-family='sans-serif' font-size='22' font-weight='900'>CHOO-CHOO CHARLES</text><text x='50%' y='88%' dominant-baseline='middle' text-anchor='middle' fill='%23ffffff' font-family='sans-serif' font-size='12' letter-spacing='2'>HORROR TRAIN ADVENTURE</text></svg>" alt="Choo-Choo Charles Mobile">
 <div class="card-body">
@@ -636,23 +579,11 @@ font-size: 1.8rem;
 </div>
 <div class="about-container">
 <div class="about-text">
-<p>Welcome to the official hub of <strong>Bakwas Baate 2.0</strong>! With a community of gaming enthusiasts on Instagram and Telegram, our mission is to test, review, and deliver high-quality Android games, offline titles, custom mods, and low-end compatible mobile games.</p>
-<p>Every game file provided on this site is pre-tested for safety, performance, and optimal gameplay experience.</p>
-
-<!-- Social Media Links -->
+<p>Welcome to the official hub of <strong>Bakwas Baate 2.0</strong>! With a community of over 5,000+ gaming enthusiasts on Instagram, our mission is to test, review, and deliver the highest quality Android games, offline titles, custom mods, and low-end compatible mobile games.</p>
+<p>Every game file provided on this site is pre-tested for safety, performance, and gameplay enjoyment.</p>
 <div class="social-links">
-<a href="https://www.instagram.com/bakwas__baten2.0?stkn=enFlZm5vaDFxaGc=" target="_blank" class="social-btn">
-<i class="fab fa-instagram"></i> Follow on Instagram
-</a>
-<a href="https://t.me/hhfwu43" target="_blank" class="social-btn telegram">
-<i class="fab fa-telegram"></i> Join Telegram Channel
-</a>
-</div>
-
-<!-- Game Download Help Description -->
-<div class="download-help-note">
-<i class="fas fa-info-circle" style="color: var(--accent-color); margin-right: 5px;"></i>
-If you face any issues or problems while downloading any game, please feel free to send me a Direct Message (DM) on Instagram for assistance!
+<a href="https://instagram.com" target="_blank" class="social-btn"><i class="fab fa-instagram"></i> Follow on Instagram</a>
+<a href="https://telegram.org" target="_blank" class="social-btn telegram"><i class="fab fa-telegram"></i> Join Telegram Channel</a>
 </div>
 </div>
 </div>
