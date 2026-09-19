@@ -5,134 +5,1487 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bakwas Baate 2.0 - Gaming Hub</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
 <style>
-:root{--bg:#0d0f12;--card:#161b22;--green:#00e676;--text:#fff;--muted:#9da7b3;--border:#26313b}
-*{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:Segoe UI,Arial,sans-serif;line-height:1.5}
-.navbar{position:sticky;top:0;z-index:1000;display:flex;justify-content:space-between;align-items:center;padding:15px 5%;background:#101820f5;border-bottom:1px solid var(--border)}
-.logo{font-size:clamp(18px,4vw,25px);font-weight:800}.logo span{color:var(--green)}
-.nav-links{display:flex;gap:20px;list-style:none}.nav-links a{color:var(--muted);text-decoration:none}.nav-links a:hover{color:var(--green)}
-.menu-toggle{display:none;font-size:24px;cursor:pointer}
-.hero{min-height:390px;display:grid;place-items:center;text-align:center;padding:50px 20px;background:linear-gradient(#0d0f12aa,#0d0f12),radial-gradient(circle,#164b59,#0d0f12 70%)}
-.hero h2{font-size:clamp(28px,5vw,48px);margin-bottom:15px}.hero p{max-width:650px;color:var(--muted);margin:0 auto 25px}
-.btn-primary{display:inline-block;background:var(--green);color:#000;padding:12px 25px;border:0;border-radius:8px;text-decoration:none;font-weight:800;cursor:pointer}
-section{padding:55px 5%}.section-title{text-align:center;margin-bottom:30px}.section-title h2{font-size:clamp(24px,4vw,34px)}.section-title p{color:var(--muted)}
-.controls{display:flex;flex-direction:column;align-items:center;gap:15px;margin-bottom:35px}
-#search-input{width:100%;max-width:500px;padding:14px;border:1px solid var(--border);border-radius:8px;background:var(--card);color:white;font-size:16px;outline:none}
-.filter-buttons{display:flex;flex-wrap:wrap;justify-content:center;gap:8px}.filter-btn{padding:9px 14px;background:var(--card);color:var(--muted);border:1px solid var(--border);border-radius:7px;cursor:pointer}.filter-btn.active,.filter-btn:hover{background:var(--green);color:#000}
-.ram-checker-box{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;background:var(--card);border:1px solid var(--green);padding:14px;border-radius:10px;width:100%;max-width:550px}
-.ram-checker-box select{background:#0d0f12;color:var(--green);border:1px solid var(--border);padding:9px;border-radius:6px;max-width:100%}
-.games-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px}
-.game-card{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;min-width:0;transition:.25s}.game-card:hover{transform:translateY(-4px)}
-.game-banner{height:190px;display:grid;place-items:center;text-align:center;padding:15px;background:linear-gradient(135deg,#163d48,#080b10);position:relative;overflow:hidden}
-.game-banner:before{content:"";position:absolute;width:180px;height:180px;border:2px solid #00e67655;border-radius:50%}
-.game-banner h3{font-size:clamp(18px,3vw,25px);position:relative;color:#fff;text-shadow:0 2px 8px #000}.game-banner small{display:block;color:var(--green);position:relative;font-weight:700}
-.card-body{padding:18px;display:flex;flex-direction:column;flex:1}.badge-container{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}.badge,.ram-badge,.compat-badge{padding:4px 8px;border-radius:5px;font-size:12px;font-weight:700}.badge{color:var(--green);background:#00e67620}.ram-badge{color:#29b6f6;background:#2196f320}.compat-badge.smooth{display:inline-block;color:var(--green);border:1px solid var(--green)}.compat-badge.lag{display:inline-block;color:#ff5252;border:1px solid #ff5252}
-.card-body h3{font-size:19px;margin-bottom:6px}.card-body p{color:var(--muted);font-size:14px;margin-bottom:15px}
-.download-btn{width:100%;padding:12px;border:1px solid var(--green);border-radius:8px;background:transparent;color:var(--green);font-weight:800;cursor:pointer;margin-bottom:12px}.download-btn:hover{background:var(--green);color:#000}
-.card-interactions{border-top:1px solid var(--border);padding-top:12px;margin-top:auto}.rating-like-bar{display:flex;justify-content:space-between;align-items:center;gap:8px}.stars{display:flex;gap:3px}.star{color:#555;font-size:20px;cursor:pointer}.star.active{color:#ffc107}
-.like-btn{background:#21262d;color:#fff;border:1px solid var(--border);padding:6px 10px;border-radius:18px;cursor:pointer;font-size:12px}.like-btn.liked{background:#dc3545}
-.comments-section{border-top:1px dashed var(--border);margin-top:12px;padding-top:10px}.comments-section h4{font-size:14px;color:var(--muted);margin-bottom:7px}.comment-input-box{display:flex;gap:6px}.comment-input-box input{min-width:0;flex:1;padding:9px;background:#0d0f12;color:#fff;border:1px solid var(--border);border-radius:6px}.comment-input-box button{padding:8px 10px;background:var(--green);border:0;border-radius:6px;font-weight:700}.comments-list{max-height:90px;overflow:auto;margin-top:8px}.comment-item{background:#0d0f12;padding:6px;border-radius:5px;font-size:12px;color:var(--muted);margin-bottom:4px;word-break:break-word}
-.about-container{max-width:850px;margin:auto;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:25px}.social-links{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}.social-btn{padding:10px 15px;border-radius:7px;color:#fff;text-decoration:none;background:#e1306c;font-size:14px;font-weight:700}.telegram{background:#0088cc}
-.contact-form{max-width:600px;margin:auto;display:flex;flex-direction:column;gap:14px}.contact-form input,.contact-form textarea{width:100%;padding:13px;background:var(--card);border:1px solid var(--border);border-radius:7px;color:#fff;resize:vertical}
-.modal{display:none;position:fixed;inset:0;z-index:2000;background:#000d;align-items:center;justify-content:center;padding:20px}.modal-content{position:relative;background:var(--card);border:1px solid var(--green);border-radius:12px;padding:30px;max-width:450px;width:100%;text-align:center}.close-btn{position:absolute;right:15px;top:8px;font-size:30px;color:var(--muted);cursor:pointer}.modal-warning{color:var(--muted);font-size:13px;margin:15px 0}
-footer{text-align:center;padding:22px;border-top:1px solid var(--border);color:var(--muted);font-size:13px}
-@media(max-width:768px){
-.navbar{padding:12px 16px}.menu-toggle{display:block}.nav-links{display:none;position:absolute;top:59px;left:0;width:100%;padding:15px 20px;background:#161b22;flex-direction:column;gap:14px;border-bottom:1px solid var(--border)}.nav-links.active{display:flex}
-.hero{min-height:340px;padding:35px 16px}.hero h2{font-size:30px}.hero p{font-size:14px}
-section{padding:40px 14px}.games-grid{grid-template-columns:1fr;gap:16px}.game-banner{height:175px}.card-body{padding:15px}.rating-like-bar{align-items:flex-start}.ram-checker-box{align-items:stretch;flex-direction:column;text-align:center}.ram-checker-box select{width:100%}.filter-buttons{gap:6px}.filter-btn{font-size:12px;padding:8px 10px}
+/* Base Styles & Variables */
+:root {
+--bg-color: #0d0f12;
+--card-bg: #161b22;
+--accent-color: #00e676;
+--text-color: #ffffff;
+--text-secondary: #9da7b3;
+--border-color: #21262d;
+--font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-@media(min-width:769px) and (max-width:1050px){.games-grid{grid-template-columns:repeat(2,1fr)}}
+
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+scroll-behavior: smooth;
+}
+
+body {
+background-color: var(--bg-color);
+color: var(--text-color);
+font-family: var(--font-family);
+line-height: 1.6;
+}
+
+/* Header & Navigation */
+.navbar {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 1rem 5%;
+background-color: rgba(22, 27, 34, 0.95);
+position: fixed;
+width: 100%;
+top: 0;
+z-index: 1000;
+border-bottom: 1px solid var(--border-color);
+}
+
+.logo h1 {
+font-size: 1.5rem;
+font-weight: 700;
+}
+
+.logo span {
+color: var(--accent-color);
+}
+
+.nav-links {
+display: flex;
+list-style: none;
+}
+
+.nav-links li {
+margin-left: 20px;
+}
+
+.nav-links a {
+color: var(--text-secondary);
+text-decoration: none;
+font-size: 1rem;
+transition: color 0.3s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+color: var(--accent-color);
+}
+
+.menu-toggle {
+display: none;
+font-size: 1.5rem;
+cursor: pointer;
+}
+
+/* Hero Section */
+.hero {
+height: 70vh;
+display: flex;
+align-items: center;
+justify-content: center;
+text-align: center;
+padding: 0 20px;
+background: linear-gradient(180deg, rgba(13, 15, 18, 0.7) 0%, rgba(13, 15, 18, 1) 100%),
+url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='600' viewBox='0 0 1200 600'><defs><linearGradient id='g' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' stop-color='%230f2027'/><stop offset='50%' stop-color='%23203a43'/><stop offset='100%' stop-color='%232c5364'/></linearGradient></defs><rect width='100%' height='100%' fill='url(%23g)'/><circle cx='600' cy='300' r='250' fill='none' stroke='%2300e676' stroke-width='3' opacity='0.2'/><text x='50%' y='45%' dominant-baseline='middle' text-anchor='middle' fill='%23ffffff' font-family='sans-serif' font-size='50' font-weight='bold'>BAKWAS BAATE 2.0</text><text x='50%' y='58%' dominant-baseline='middle' text-anchor='middle' fill='%2300e676' font-family='sans-serif' font-size='24' font-weight='600'>OFFICIAL GAMING VAULT</text></svg>") center/cover no-repeat;
+margin-top: 60px;
+}
+
+.hero-content h2 {
+font-size: 2.5rem;
+margin-bottom: 15px;
+}
+
+.hero-content p {
+color: var(--text-secondary);
+max-width: 600px;
+margin: 0 auto 25px;
+}
+
+.btn-primary {
+background-color: var(--accent-color);
+color: #000;
+padding: 12px 28px;
+border: none;
+border-radius: 5px;
+font-weight: bold;
+text-decoration: none;
+cursor: pointer;
+display: inline-block;
+transition: transform 0.2s, background-color 0.2s;
+}
+
+.btn-primary:hover {
+transform: translateY(-2px);
+background-color: #00c853;
+}
+
+/* Section Titles */
+.section-title {
+text-align: center;
+margin-bottom: 30px;
+}
+
+.section-title h2 {
+font-size: 2rem;
+color: var(--text-color);
+}
+
+.section-title p {
+color: var(--text-secondary);
+}
+
+/* Games Section & Controls */
+.games-section, .about-section, .contact-section {
+padding: 60px 5%;
+}
+
+.controls {
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 15px;
+margin-bottom: 40px;
+}
+
+#search-input {
+width: 100%;
+max-width: 400px;
+padding: 12px 15px;
+border-radius: 5px;
+border: 1px solid var(--border-color);
+background-color: var(--card-bg);
+color: var(--text-color);
+outline: none;
+}
+
+.filter-buttons {
+display: flex;
+gap: 10px;
+flex-wrap: wrap;
+justify-content: center;
+}
+
+.filter-btn {
+background-color: var(--card-bg);
+color: var(--text-secondary);
+border: 1px solid var(--border-color);
+padding: 8px 16px;
+border-radius: 4px;
+cursor: pointer;
+transition: all 0.3s;
+}
+
+.filter-btn.active, .filter-btn:hover {
+background-color: var(--accent-color);
+color: #000;
+}
+
+.ram-checker-box {
+background-color: var(--card-bg);
+border: 1px solid var(--accent-color);
+padding: 12px 20px;
+border-radius: 8px;
+display: flex;
+align-items: center;
+gap: 12px;
+margin-top: 5px;
+box-shadow: 0 4px 12px rgba(0,230,118,0.1);
+}
+
+.ram-checker-box label {
+font-size: 0.9rem;
+font-weight: bold;
+color: var(--text-color);
+display: flex;
+align-items: center;
+gap: 6px;
+}
+
+.ram-checker-box select {
+background: #0d0f12;
+color: var(--accent-color);
+border: 1px solid var(--border-color);
+padding: 6px 12px;
+border-radius: 4px;
+font-weight: bold;
+outline: none;
+cursor: pointer;
+}
+
+/* Games Grid */
+.games-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+gap: 25px;
+}
+
+.game-card {
+background-color: var(--card-bg);
+border: 1px solid var(--border-color);
+border-radius: 8px;
+overflow: hidden;
+transition: transform 0.3s;
+display: flex;
+flex-direction: column;
+}
+
+.game-card:hover {
+transform: translateY(-5px);
+}
+
+.game-card img {
+width: 100%;
+height: 220px;
+object-fit: cover;
+object-position: center;
+}
+
+.card-body {
+padding: 20px;
+display: flex;
+flex-direction: column;
+flex-grow: 1;
+}
+
+.badge-container {
+display: flex;
+gap: 6px;
+flex-wrap: wrap;
+margin-bottom: 10px;
+}
+
+.badge {
+background-color: rgba(0, 230, 118, 0.15);
+color: var(--accent-color);
+padding: 4px 8px;
+font-size: 0.8rem;
+border-radius: 4px;
+display: inline-block;
+}
+
+.ram-badge {
+background-color: rgba(33, 150, 243, 0.15);
+color: #2196f3;
+padding: 4px 8px;
+font-size: 0.8rem;
+border-radius: 4px;
+font-weight: 600;
+}
+
+.compat-badge {
+font-size: 0.8rem;
+padding: 4px 8px;
+border-radius: 4px;
+font-weight: bold;
+display: none;
+}
+
+.compat-badge.smooth {
+display: inline-block;
+background-color: rgba(0, 230, 118, 0.2);
+color: #00e676;
+border: 1px solid #00e676;
+}
+
+.compat-badge.lag {
+display: inline-block;
+background-color: rgba(255, 82, 82, 0.2);
+color: #ff5252;
+border: 1px solid #ff5252;
+}
+
+.card-body h3 {
+font-size: 1.2rem;
+margin-bottom: 8px;
+}
+
+.card-body p {
+color: var(--text-secondary);
+font-size: 0.9rem;
+margin-bottom: 15px;
+}
+
+.download-btn-group {
+display: flex;
+gap: 10px;
+margin-bottom: 15px;
+}
+
+.download-btn {
+width: 100%;
+background-color: transparent;
+color: var(--accent-color);
+border: 1px solid var(--accent-color);
+padding: 10px;
+border-radius: 5px;
+cursor: pointer;
+font-weight: bold;
+transition: all 0.3s;
+text-align: center;
+margin-bottom: 10px;
+}
+
+.download-btn:hover {
+background-color: var(--accent-color);
+color: #000;
+}
+
+.download-btn.secondary {
+color: #ffb74d;
+border-color: #ffb74d;
+}
+
+.download-btn.secondary:hover {
+background-color: #ffb74d;
+color: #000;
+}
+
+.card-interactions {
+border-top: 1px solid var(--border-color);
+padding-top: 12px;
+margin-top: auto;
+display: flex;
+flex-direction: column;
+gap: 12px;
+}
+
+.rating-like-bar {
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+.stars {
+display: flex;
+gap: 3px;
+cursor: pointer;
+}
+
+.star {
+font-size: 1.2rem;
+color: #555;
+transition: color 0.2s;
+}
+
+.star.active {
+color: #ffc107;
+}
+
+.like-btn {
+background: #21262d;
+color: var(--text-color);
+border: 1px solid var(--border-color);
+padding: 5px 12px;
+border-radius: 15px;
+cursor: pointer;
+font-size: 0.85rem;
+display: flex;
+align-items: center;
+gap: 6px;
+transition: all 0.2s;
+}
+
+.like-btn.liked {
+background: #dc3545;
+color: #fff;
+border-color: #dc3545;
+}
+
+.comments-section {
+border-top: 1px dashed var(--border-color);
+padding-top: 10px;
+}
+
+.comments-section h4 {
+font-size: 0.9rem;
+margin-bottom: 8px;
+color: var(--text-secondary);
+}
+
+.comment-input-box {
+display: flex;
+gap: 6px;
+margin-bottom: 10px;
+}
+
+.comment-input-box input {
+flex: 1;
+padding: 6px 10px;
+border-radius: 4px;
+border: 1px solid var(--border-color);
+background: #0d0f12;
+color: #fff;
+font-size: 0.85rem;
+outline: none;
+}
+
+.comment-input-box button {
+padding: 6px 10px;
+background: var(--accent-color);
+color: #000;
+border: none;
+border-radius: 4px;
+cursor: pointer;
+font-weight: bold;
+font-size: 0.85rem;
+}
+
+.comments-list {
+max-height: 100px;
+overflow-y: auto;
+display: flex;
+flex-direction: column;
+gap: 5px;
+}
+
+.comment-item {
+background: #0d0f12;
+padding: 6px 8px;
+border-radius: 4px;
+font-size: 0.8rem;
+color: var(--text-secondary);
+word-break: break-word;
+}
+
+/* About Section */
+.about-container {
+max-width: 800px;
+margin: 0 auto;
+background-color: var(--card-bg);
+padding: 30px;
+border-radius: 8px;
+border: 1px solid var(--border-color);
+}
+
+.social-links {
+margin-top: 20px;
+display: flex;
+gap: 15px;
+flex-wrap: wrap;
+}
+
+.social-btn {
+background-color: #e1306c;
+color: #fff;
+padding: 10px 20px;
+border-radius: 5px;
+text-decoration: none;
+font-size: 0.9rem;
+font-weight: bold;
+}
+
+.social-btn.telegram {
+background-color: #0088cc;
+}
+
+/* Contact Section */
+.contact-form {
+max-width: 600px;
+margin: 0 auto;
+display: flex;
+flex-direction: column;
+gap: 15px;
+}
+
+.form-group input, .form-group textarea {
+width: 100%;
+padding: 12px;
+background-color: var(--card-bg);
+border: 1px solid var(--border-color);
+border-radius: 5px;
+color: var(--text-color);
+outline: none;
+}
+
+/* Modal Window */
+.modal {
+display: none;
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(0, 0, 0, 0.85);
+z-index: 2000;
+justify-content: center;
+align-items: center;
+}
+
+.modal-content {
+background-color: var(--card-bg);
+padding: 30px;
+border-radius: 8px;
+width: 90%;
+max-width: 450px;
+text-align: center;
+position: relative;
+border: 1px solid var(--border-color);
+}
+
+.close-btn {
+position: absolute;
+top: 10px;
+right: 15px;
+font-size: 1.8rem;
+cursor: pointer;
+color: var(--text-secondary);
+}
+
+.modal-warning {
+color: var(--text-secondary);
+font-size: 0.85rem;
+margin: 15px 0;
+}
+
+.download-confirm {
+width: 100%;
+}
+
+footer {
+text-align: center;
+padding: 20px;
+border-top: 1px solid var(--border-color);
+color: var(--text-secondary);
+font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+.nav-links {
+display: none;
+flex-direction: column;
+position: absolute;
+top: 60px;
+left: 0;
+width: 100%;
+background-color: var(--card-bg);
+padding: 20px;
+border-bottom: 1px solid var(--border-color);
+}
+
+.nav-links.active {
+display: flex;
+}
+
+.nav-links li {
+margin: 10px 0;
+}
+
+.menu-toggle {
+display: block;
+}
+
+.hero-content h2 {
+font-size: 1.8rem;
+}
+
+.download-btn-group {
+flex-direction: column;
+}
+
+.ram-checker-box {
+flex-direction: column;
+width: 100%;
+max-width: 400px;
+}
+}
 </style>
 </head>
 <body>
+
+<!-- Navigation Header -->
 <header class="navbar">
-<div class="logo">Bakwas Baate <span>2.0</span></div>
-<nav><ul class="nav-links" id="nav-menu">
-<li><a href="#home">Home</a></li><li><a href="#games">Games & APKs</a></li><li><a href="#about">About Us</a></li><li><a href="#contact">Contact</a></li>
-</ul></nav>
-<div class="menu-toggle" id="mobile-menu"><i class="fas fa-bars"></i></div>
+<div class="logo">
+<h1>Bakwas Baate <span>2.0</span></h1>
+</div>
+<nav>
+<ul class="nav-links" id="nav-menu">
+<li><a href="#home" class="active">Home</a></li>
+<li><a href="#games">Games & APKs</a></li>
+<li><a href="#about">About Us</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</nav>
+<div class="menu-toggle" id="mobile-menu">
+<i class="fas fa-bars"></i>
+</div>
 </header>
 
-<section class="hero" id="home"><div>
+<!-- Hero Section -->
+<section id="home" class="hero">
+<div class="hero-content">
 <h2>Welcome to Official Gaming Vault</h2>
-<p>Download mobile games, mods and APKs from Bakwas Baate 2.0.</p>
+<p>Download the best curated mobile games, mods, and APKs directly verified by <strong>Bakwas Baate 2.0</strong>.</p>
 <a href="#games" class="btn-primary">Explore Games</a>
-</div></section>
-
-<section id="games">
-<div class="section-title"><h2>Featured Games & APK Downloads</h2><p>Select your favorite game and download files.</p></div>
-<div class="controls">
-<input id="search-input" placeholder="Search games...">
-<div class="filter-buttons">
-<button class="filter-btn active" data-category="all">All</button><button class="filter-btn" data-category="open-world">Open World</button><button class="filter-btn" data-category="action">Action</button><button class="filter-btn" data-category="horror">Horror</button><button class="filter-btn" data-category="adventure">Adventure</button>
 </div>
-<div class="ram-checker-box"><label><i class="fas fa-mobile-alt"></i> Select Your Phone RAM:</label><select id="user-ram-select"><option value="0">All Games</option><option value="2">2 GB RAM</option><option value="3">3 GB RAM</option><option value="4">4 GB RAM</option><option value="6">6 GB RAM or Higher</option></select></div>
-</div>
-<div class="games-grid" id="games-container"></div>
 </section>
 
-<section id="about"><div class="section-title"><h2>About Us</h2><p>Learn more about Bakwas Baate 2.0</p></div><div class="about-container">
-<h3>Welcome to Bakwas Baate 2.0!</h3><p>Your gaming destination for mobile games, Android ports, scripts and APK recommendations. Always scan downloaded files and check permissions before installing.</p>
-<div class="social-links"><a class="social-btn" href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i> Instagram</a><a class="social-btn telegram" href="https://t.me" target="_blank"><i class="fab fa-telegram"></i> Telegram</a></div>
-</div></section>
+<!-- Games & APKs Section -->
+<section id="games" class="games-section">
+<div class="section-title">
+<h2>Featured Games & APK Downloads</h2>
+<p>Select your favorite game and download files safely.</p>
+</div>
 
-<section id="contact"><div class="section-title"><h2>Contact Us</h2><p>Have questions or game requests?</p></div><form class="contact-form" onsubmit="event.preventDefault();alert('Message sent successfully!')">
-<input placeholder="Your Name" required><input type="email" placeholder="Your Email" required><textarea rows="5" placeholder="Your Message or Game Request..." required></textarea><button class="btn-primary" type="submit">Send Message</button>
-</form></section>
+<div class="controls">
+<input type="text" id="search-input" placeholder="Search games...">
 
-<div class="modal" id="downloadModal"><div class="modal-content"><span class="close-btn" onclick="closeDownloadModal()">&times;</span><h3 id="modalGameTitle"></h3><p id="modalFileType" style="color:var(--green)"></p><p class="modal-warning"><i class="fas fa-shield-alt"></i> Check the source and scan files before installation.</p><a id="modalDownloadLink" class="btn-primary" href="#" target="_blank" onclick="closeDownloadModal()">Proceed to Download</a></div></div>
-<footer><p>&copy; 2026 Bakwas Baate 2.0. All Rights Reserved.</p></footer>
+<div class="filter-buttons">
+<button class="filter-btn active" data-category="all">All</button>
+<button class="filter-btn" data-category="open-world">Open World</button>
+<button class="filter-btn" data-category="action">Action</button>
+<button class="filter-btn" data-category="horror">Horror</button>
+<button class="filter-btn" data-category="adventure">Adventure</button>
+</div>
 
+<div class="ram-checker-box">
+<label for="user-ram-select"><i class="fas fa-mobile-alt"></i> Select Your Phone RAM:</label>
+<select id="user-ram-select">
+<option value="0">Select RAM (All Games)</option>
+<option value="2">2 GB RAM</option>
+<option value="3">3 GB RAM</option>
+<option value="4">4 GB RAM</option>
+<option value="6">6 GB RAM or Higher</option>
+</select>
+</div>
+</div>
+
+<div class="games-grid" id="games-container">
+
+<!-- 1: Red Dead Redemption -->
+<div class="game-card" data-category="open-world" data-id="game-rdr" data-min-ram="6">
+<img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='220' viewBox='0 0 400 220'><defs><linearGradient id='rdr' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' stop-color='%23b71c1c'/><stop offset='50%' stop-color='%234a0000'/><stop offset='100%' stop-color='%23000000'/></linearGradient></defs><rect width='100%' height='100%' fill='url(%23rdr)'/><circle cx='200' cy='110' r='75' fill='%23d32f2f' opacity='0.3'/><path d='M160 140 Q200 80 240 140' stroke='%23ffeb3b' stroke-width='3' fill='none'/><text x='50%' y='40%' dominant-baseline='middle' text-anchor='middle' fill='%23ffffff' font-family='Georgia, serif' font-size='22' font-weight='bold'>RED DEAD</text><text x='50%' y='60%' dominant-baseline='middle' text-anchor='middle' fill='%23ffeb3b' font-family='Georgia, serif' font-size='18' font-weight='bold' letter-spacing='2'>REDEMPTION</text><text x='50%' y='80%' dominant-baseline='middle' text-anchor='middle' fill='%23ffffff' font-family='sans-serif' font-size='11'>MOBILE EDITION</text></svg>" alt="Red Dead Redemption">
+<div class="card-body">
+<div class="badge-container">
+<span class="badge">Open World</span>
+<span class="ram-badge"><i class="fas fa-memory"></i> Min RAM: 6GB</span>
+<span class="compat-badge"></span>
+</div>
+<h3>Red Dead Redemption</h3>
+<p>Mobile Edition | Full Game Download</p>
+<button class="download-btn" onclick="openDownloadModal('Red Dead Redemption', 'Full Mobile Game', 'https://an1.com/7527-red-dead-redemption.html')">
+<i class="fas fa-download"></i> Download APK
+</button>
+
+<div class="card-interactions">
+<div class="rating-like-bar">
+<div class="stars">
+<span class="star" data-value="1">★</span>
+<span class="star" data-value="2">★</span>
+<span class="star" data-value="3">★</span>
+<span class="star" data-value="4">★</span>
+<span class="star" data-value="5">★</span>
+</div>
+<button class="like-btn">
+<i class="fas fa-heart"></i> <span class="like-text">Like</span> (<span class="like-count">0</span>)
+</button>
+</div>
+<div class="comments-section">
+<h4>Comments</h4>
+<div class="comment-input-box">
+<input type="text" placeholder="Write a comment...">
+<button class="send-comment-btn">Send</button>
+</div>
+<div class="comments-list"></div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- 2: Minecraft PE -->
+<div class="game-card" data-category="adventure" data-id="game-minecraft" data-min-ram="2">
+<img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='220' viewBox='0 0 400 220'><defs><linearGradient id='mc' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' stop-color='%232e7d32'/><stop offset='50%' stop-color='%231b5e20'/><stop offset='100%' stop-color='%23003300'/></linearGradient></defs><rect width='100%' height='100%' fill='url(%23mc)'/><rect x='150' y='50' width='100' height='100' fill='%234caf50' stroke='%231b5e20' stroke-width='4'/><rect x='170' y='70' width='20' height='20' fill='%23000000'/><rect x='210' y='70' width='20' height='20' fill='%23000000'/><rect x='185' y='90' width='30' height='40' fill='%23000000'/><rect x='175' y='110' width='10' height='20' fill='%23000000'/><rect x='215' y='110' width='10' height='20' fill='%23000000'/><text x='50%' y='82%' dominant-baseline='middle' text-anchor='middle' fill='%23ffffff' font-family='sans-serif' font-size='20' font-weight='900' letter-spacing='1'>MINECRAFT PE</text><text x='50%' y='93%' dominant-baseline='middle' text-anchor='middle' fill='%2381c784' font-family='sans-serif' font-size='12' font-weight='bold'>MOD MENU UNLOCKED</text></svg>" alt="Minecraft Pocket Edition">
+<div class="card-body">
+<div class="badge-container">
+<span class="badge">Adventure</span>
+<span class="ram-badge"><i class="fas fa-memory"></i> Min RAM: 2GB</span>
+<span class="compat-badge"></span>
+</div>
+<h3>Minecraft Pocket Edition</h3>
+<p>Pocket Edition | MOD Unlocked APK</p>
+<button class="download-btn" onclick="openDownloadModal('Minecraft PE MOD', 'Unlocked MOD APK', 'https://minecraft-pocket-edition-mod.latestmodapks.com/download/')">
+<i class="fas fa-download"></i> Download APK
+</button>
+
+<div class="card-interactions">
+<div class="rating-like-bar">
+<div class="stars">
+<span class="star" data-value="1">★</span>
+<span class="star" data-value="2">★</span>
+<span class="star" data-value="3">★</span>
+<span class="star" data-value="4">★</span>
+<span class="star" data-value="5">★</span>
+</div>
+<button class="like-btn">
+<i class="fas fa-heart"></i> <span class="like-text">Like</span> (<span class="like-count">0</span>)
+</button>
+</div>
+<div class="comments-section">
+<h4>Comments</h4>
+<div class="comment-input-box">
+<input type="text" placeholder="Write a comment...">
+<button class="send-comment-btn">Send</button>
+</div>
+<div class="comments-list"></div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- 3: Takashi Ninja Warrior -->
+<div class="game-card" data-category="action" data-id="game-takashi" data-min-ram="2">
+<img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='220' viewBox='0 0 400 220'><defs><linearGradient id='takashi' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' stop-color='%2337474f'/><stop offset='50%' stop-color='%23212121'/><stop offset='100%' stop-color='%23000000'/></linearGradient></defs><rect width='100%' height='100%' fill='url(%23takashi)'/><circle cx='200' cy='110' r='60' fill='%23d32f2f' opacity='0.8'/><path d='M120 180 L280 40' stroke='%23ffffff' stroke-width='4'/><path d='M130 190 L290 50' stroke='%23d32f2f' stroke-width='2'/><text x='50%' y='40%' dominant-baseline='middle' text-anchor='middle' fill='%23ffffff' font-family='sans-serif' font-size='24' font-weight='900'>TAKASHI</text><text x='50%' y='60%' dominant-baseline='middle' text-anchor='middle' fill='%23ff5252' font-family='sans-serif' font-size='16' font-weight='bold' letter-spacing='3'>NINJA WARRIOR</text><text x='50%' y='80%' dominant-baseline='middle' text-anchor='middle' fill='%23ffffff' font-family='sans-serif' font-size='11'>SHADOW RPG ACTION</text></svg>" alt="Takashi Ninja Warrior">
+<div class="card-body">
+<div class="badge-container">
+<span class="badge">Action</span>
+<span class="ram-badge"><i class="fas fa-memory"></i> Min RAM: 2GB</span>
+<span class="compat-badge"></span>
+</div>
+<h3>Takashi Ninja Warrior</h3>
+<p>Ultimate Shadow Ninja RPG | APK</p>
+<button class="download-btn" onclick="openDownloadModal('Takashi Ninja Warrior', 'Original Game APK', 'https://apkpure.net/takashi-ninja-warrior/com.hg.takashi.ninjagames/download')">
+<i class="fas fa-download"></i> Download APK
+</button>
+
+<div class="card-interactions">
+<div class="rating-like-bar">
+<div class="stars">
+<span class="star" data-value="1">★</span>
+<span class="star" data-value="2">★</span>
+<span class="star" data-value="3">★</span>
+<span class="star" data-value="4">★</span>
+<span class="star" data-value="5">★</span>
+</div>
+<button class="like-btn">
+<i class="fas fa-heart"></i> <span class="like-text">Like</span> (<span class="like-count">0</span>)
+</button>
+</div>
+<div class="comments-section">
+<h4>Comments</h4>
+<div class="comment-input-box">
+<input type="text" placeholder="Write a comment...">
+<button class="send-comment-btn">Send</button>
+</div>
+<div class="comments-list"></div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- 4: GTA SA Spider-Man Mod -->
+<div class="game-card" data-category="open-world" data-id="game-gta-spiderman" data-min-ram="3">
+<img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='220' viewBox='0 0 400 220'><defs><linearGradient id='spiderman' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' stop-color='%23b71c1c'/><stop offset='50%' stop-color='%23880e4f'/><stop offset='100%' stop-color='%230d47a1'/></linearGradient></defs><rect width='100%' height='100%' fill='url(%23spiderman)'/><circle cx='200' cy='110' r='85' fill='none' stroke='%23ffffff' stroke-width='2' opacity='0.25'/><path d='M200 40 L200 180 M130 110 L270 110 M150 60 L250 160 M150 160 L250 60' stroke='%23ffffff' stroke-width='1' opacity='0.2'/><text x='50%' y='36%' dominant-baseline='middle' text-anchor='middle' fill='%23ffffff' font-family='Georgia, serif' font-size='22' font-weight='bold'>GTA SAN ANDREAS</text><text x='50%' y='58%' dominant-baseline='middle' text-anchor='middle' fill='%23ffeb3b' font-family='sans-serif' font-size='16' font-weight='900' letter-spacing='1'>SPIDER-MAN MOD</text><text x='50%' y='78%' dominant-baseline='middle' text-anchor='middle' fill='%2300e676' font-family='sans-serif' font-size='12' font-weight='bold'>v2.00 AML + FLA DATA</text></svg>" alt="GTA San Andreas Spider-Man Mod">
+<div class="card-body">
+<div class="badge-container">
+<span class="badge">Open World</span>
+<span class="ram-badge"><i class="fas fa-memory"></i> Min RAM: 3GB</span>
+<span class="compat-badge"></span>
+</div>
+<h3>GTA San Andreas Spider-Man Mod</h3>
+<p>Includes Modded APK (AML 1.2.4 + FLA 7.6) & OBB Data</p>
+<div class="download-btn-group">
+<button class="download-btn" onclick="openDownloadModal('GTA SA Spider-Man Mod APK', 'GTASA 2.00 AML1.2.4 FLA7.6.apk', 'https://www.mediafire.com/file/0sk8ghetllk15oh/GTASA+2.00+AML1.2.4+FLA7.6.apk/file')">
+<i class="fas fa-download"></i> APK File
+</button>
+<button class="download-btn secondary" onclick="openDownloadModal('GTA SA Spider-Man OBB Data', 'com.rockstargames.gtasa.zip', 'https://www.mediafire.com/file/c8h46oey4b6fwtp/com.rockstargames.gtasa.zip/file')">
+<i class="fas fa-file-archive"></i> OBB Data
+</button>
+</div>
+
+<div class="card-interactions">
+<div class="rating-like-bar">
+<div class="stars">
+<span class="star" data-value="1">★</span>
+<span class="star" data-value="2">★</span>
+<span class="star" data-value="3">★</span>
+<span class="star" data-value="4">★</span>
+<span class="star" data-value="5">★</span>
+</div>
+<button class="like-btn">
+<i class="fas fa-heart"></i> <span class="like-text">Like</span> (<span class="like-count">0</span>)
+</button>
+</div>
+<div class="comments-section">
+<h4>Comments</h4>
+<div class="comment-input-box">
+<input type="text" placeholder="Write a comment...">
+<button class="send-comment-btn">Send</button>
+</div>
+<div class="comments-list"></div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- 5: Little Nightmares -->
+<div class="game-card" data-category="horror" data-id="game-little-nightmares" data-min-ram="4">
+<img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='220' viewBox='0 0 400 220'><defs><linearGradient id='lnight' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' stop-color='%231a1a00'/><stop offset='50%' stop-color='%230d0d0d'/><stop offset='100%' stop-color='%23000000'/></linearGradient></defs><rect width='100%' height='100%' fill='url(%23lnight)'/><path d='M200 50 L230 140 L170 140 Z' fill='%23ffee58' opacity='0.9'/><circle cx='200' cy='45' r='12' fill='%23ffee58'/><text x='50%' y='75%' dominant-baseline='middle' text-anchor='middle' fill='%23ffffff' font-family='sans-serif' font-size='22' font-weight='900' letter-spacing='2'>LITTLE NIGHTMARES</text><text x='50%' y='88%' dominant-baseline='middle' text-anchor='middle' fill='%23ffee58' font-family='sans-serif' font-size='12' font-weight='bold'>MOBILE EDITION</text></svg>" alt="Little Nightmares">
+<div class="card-body">
+<div class="badge-container">
+<span class="badge">Horror</span>
+<span class="ram-badge"><i class="fas fa-memory"></i> Min RAM: 4GB</span>
+<span class="compat-badge"></span>
+</div>
+<h3>Little Nightmares</h3>
+<p>Full Mobile Edition | Pre-patched APK</p>
+<button class="download-btn" onclick="openDownloadModal('Little Nightmares', 'Full Mobile Game', 'https://an1.com/7324-little-nightmares.html')">
+<i class="fas fa-download"></i> Download APK
+</button>
+
+<div class="card-interactions">
+<div class="rating-like-bar">
+<div class="stars">
+<span class="star" data-value="1">★</span>
+<span class="star" data-value="2">★</span>
+<span class="star" data-value="3">★</span>
+<span class="star" data-value="4">★</span>
+<span class="star" data-value="5">★</span>
+</div>
+<button class="like-btn">
+<i class="fas fa-heart"></i> <span class="like-text">Like</span> (<span class="like-count">0</span>)
+</button>
+</div>
+<div class="comments-section">
+<h4>Comments</h4>
+<div class="comment-input-box">
+<input type="text" placeholder="Write a comment...">
+<button class="send-comment-btn">Send</button>
+</div>
+<div class="comments-list"></div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- 6: GTA V Prologue -->
+<div class="game-card" data-category="open-world" data-id="game-gta-prologue" data-min-ram="4">
+<img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='220' viewBox='0 0 400 220'><defs><linearGradient id='gtavpro' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' stop-color='%232e7d32'/><stop offset='100%' stop-color='%23002200'/></linearGradient></defs><rect width='100%' height='100%' fill='url(%23gtavpro)'/><rect x='50' y='40' width='300' height='140' fill='none' stroke='%2381c784' stroke-width='2' opacity='0.3'/><text x='50%' y='42%' dominant-baseline='middle' text-anchor='middle' fill='%23ffffff' font-family='sans-serif' font-size='24' font-weight='900'>GTA V PROLOGUE</text><text x='50%' y='62%' dominant-baseline='middle' text-anchor='middle' fill='%2381c784' font-family='sans-serif' font-size='14' font-weight='bold' letter-spacing='3'>MOBILE EDITION</text><text x='50%' y='80%' dominant-baseline='middle' text-anchor='middle' fill='%23ffffff' font-family='sans-serif' font-size='11'>OFFICIAL MISSION PORT</text></svg>" alt="GTA V Prologue">
+<div class="card-body">
+<div class="badge-container">
+<span class="badge">Open World</span>
+<span class="ram-badge"><i class="fas fa-memory"></i> Min RAM: 4GB</span>
+<span class="compat-badge"></span>
+</div>
+<h3>GTA V Prologue</h3>
+<p>Size: Prologue Build | Android APK</p>
+<button class="download-btn" onclick="openDownloadModal('GTA V Prologue', 'Prologue Build APK', 'https://liteapks.com/download/gta-v-prologue-78252')">
+<i class="fas fa-download"></i> Download APK
+</button>
+
+<div class="card-interactions">
+<div class="rating-like-bar">
+<div class="stars">
+<span class="star" data-value="1">★</span>
+<span class="star" data-value="2">★</span>
+<span class="star" data-value="3">★</span>
+<span class="star" data-value="4">★</span>
+<span class="star" data-value="5">★</span>
+</div>
+<button class="like-btn">
+<i class="fas fa-heart"></i> <span class="like-text">Like</span> (<span class="like-count">0</span>)
+</button>
+</div>
+<div class="comments-section">
+<h4>Comments</h4>
+<div class="comment-input-box">
+<input type="text" placeholder="Write a comment...">
+<button class="send-comment-btn">Send</button>
+</div>
+<div class="comments-list"></div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- 7: GTA IV Mobile Edition -->
+<div class="game-card" data-category="open-world" data-id="game-gta4" data-min-ram="4">
+<img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='220' viewBox='0 0 400 220'><defs><linearGradient id='gta4' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' stop-color='%2337474f'/><stop offset='100%' stop-color='%23102027'/></linearGradient></defs><rect width='100%' height='100%' fill='url(%23gta4)'/><circle cx='200' cy='110' r='75' fill='none' stroke='%23ff9800' stroke-width='3' opacity='0.4'/><text x='50%' y='40%' dominant-baseline='middle' text-anchor='middle' fill='%23ffffff' font-family='Georgia, serif' font-size='24' font-weight='bold'>GTA IV</text><text x='50%' y='60%' dominant-baseline='middle' text-anchor='middle' fill='%23ff9800' font-family='sans-serif' font-size='16' font-weight='900' letter-spacing='2'>MOBILE EDITION</text><text x='50%' y='78%' dominant-baseline='middle' text-anchor='middle' fill='%23b0bec5' font-family='sans-serif' font-size='11'>LIBERTY CITY PORT</text></svg>" alt="GTA IV Mobile Edition">
+<div class="card-body">
+<div class="badge-container">
+<span class="badge">Open World</span>
+<span class="ram-badge"><i class="fas fa-memory"></i> Min RAM: 4GB</span>
+<span class="compat-badge"></span>
+</div>
+<h3>GTA IV Mobile Edition</h3>
+<p>Size: Android Edition | Full APK</p>
+<button class="download-btn" onclick="openDownloadModal('GTA IV Mobile Edition', 'Android Edition APK', 'https://gta-4-mobile-edition-1.en.softonic.com/android')">
+<i class="fas fa-download"></i> Download APK
+</button>
+
+<div class="card-interactions">
+<div class="rating-like-bar">
+<div class="stars">
+<span class="star" data-value="1">★</span>
+<span class="star" data-value="2">★</span>
+<span class="star" data-value="3">★</span>
+<span class="star" data-value="4">★</span>
+<span class="star" data-value="5">★</span>
+</div>
+<button class="like-btn">
+<i class="fas fa-heart"></i> <span class="like-text">Like</span> (<span class="like-count">0</span>)
+</button>
+</div>
+<div class="comments-section">
+<h4>Comments</h4>
+<div class="comment-input-box">
+<input type="text" placeholder="Write a comment...">
+<button class="send-comment-btn">Send</button>
+</div>
+<div class="comments-list"></div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- 8: Life is Strange MOD -->
+<div class="game-card" data-category="adventure" data-id="game-life-is-strange" data-min-ram="3">
+<img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='220' viewBox='0 0 400 220'><defs><linearGradient id='lis' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' stop-color='%23006064'/><stop offset='50%' stop-color='%2300363a'/><stop offset='100%' stop-color='%23000b10'/></linearGradient></defs><rect width='100%' height='100%' fill='url(%23lis)'/><path d='M160 110 Q200 60 240 110 Q200 160 160 110 Z' stroke='%2380deea' stroke-width='2' fill='none'/><circle cx='200' cy='110' r='15' fill='%2380deea' opacity='0.6'/><text x='50%' y='38%' dominant-baseline='middle' text-anchor='middle' fill='%23ffffff' font-family='sans-serif' font-size='22' font-weight='bold'>LIFE IS STRANGE</text><text x='50%' y='78%' dominant-baseline='middle' text-anchor='middle' fill='%2380deea' font-family='sans-serif' font-size='14' font-weight='bold' letter-spacing='2'>FULL UNLOCKED MOD</text></svg>" alt="Life is Strange MOD">
+<div class="card-body">
+<div class="badge-container">
+<span class="badge">Adventure</span>
+<span class="ram-badge"><i class="fas fa-memory"></i> Min RAM: 3GB</span>
+<span class="compat-badge"></span>
+</div>
+<h3>Life is Strange MOD</h3>
+<p>Size: Unlocked Chapters | MOD APK</p>
+<button class="download-btn" onclick="openDownloadModal('Life is Strange MOD', 'Unlocked MOD APK', 'https://an1.com/4785-life-is-strange-mod.html')">
+<i class="fas fa-download"></i> Download APK
+</button>
+
+<div class="card-interactions">
+<div class="rating-like-bar">
+<div class="stars">
+<span class="star" data-value="1">★</span>
+<span class="star" data-value="2">★</span>
+<span class="star" data-value="3">★</span>
+<span class="star" data-value="4">★</span>
+<span class="star" data-value="5">★</span>
+</div>
+<button class="like-btn">
+<i class="fas fa-heart"></i> <span class="like-text">Like</span> (<span class="like-count">0</span>)
+</button>
+</div>
+<div class="comments-section">
+<h4>Comments</h4>
+<div class="comment-input-box">
+<input type="text" placeholder="Write a comment...">
+<button class="send-comment-btn">Send</button>
+</div>
+<div class="comments-list"></div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- 9: Resident Evil 4 Mobile Edition -->
+<div class="game-card" data-category="horror" data-id="game-re4" data-min-ram="2">
+<img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='220' viewBox='0 0 400 220'><defs><linearGradient id='re4' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' stop-color='%232b0000'/><stop offset='100%' stop-color='%23050000'/></linearGradient></defs><rect width='100%' height='100%' fill='url(%23re4)'/><path d='M200 40 L210 90 L260 100 L210 110 L200 160 L190 110 L140 100 L190 90 Z' fill='%23ff1744' opacity='0.3'/><text x='50%' y='48%' dominant-baseline='middle' text-anchor='middle' fill='%23ffffff' font-family='sans-serif' font-size='22' font-weight='bold'>RESIDENT EVIL 4</text><text x='50%' y='68%' dominant-baseline='middle' text-anchor='middle' fill='%23ff1744' font-family='sans-serif' font-size='14' font-weight='600'>MOBILE EDITION</text></svg>" alt="Resident Evil 4 Mobile">
+<div class="card-body">
+<div class="badge-container">
+<span class="badge">Horror</span>
+<span class="ram-badge"><i class="fas fa-memory"></i> Min RAM: 2GB</span>
+<span class="compat-badge"></span>
+</div>
+<h3>Resident Evil 4 Mobile Edition</h3>
+<p>Size: Full Game | APK MOD</p>
+<button class="download-btn" onclick="openDownloadModal('Resident Evil 4 Mobile Edition', 'Full APK MOD', '#')">
+<i class="fas fa-download"></i> Download APK
+</button>
+
+<div class="card-interactions">
+<div class="rating-like-bar">
+<div class="stars">
+<span class="star" data-value="1">★</span>
+<span class="star" data-value="2">★</span>
+<span class="star" data-value="3">★</span>
+<span class="star" data-value="4">★</span>
+<span class="star" data-value="5">★</span>
+</div>
+<button class="like-btn">
+<i class="fas fa-heart"></i> <span class="like-text">Like</span> (<span class="like-count">0</span>)
+</button>
+</div>
+<div class="comments-section">
+<h4>Comments</h4>
+<div class="comment-input-box">
+<input type="text" placeholder="Write a comment...">
+<button class="send-comment-btn">Send</button>
+</div>
+<div class="comments-list"></div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- 10: Grand Theft Auto V 0.3 Test -->
+<div class="game-card" data-category="open-world" data-id="game-gta5-test" data-min-ram="4">
+<img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='220' viewBox='0 0 400 220'><defs><linearGradient id='gtav' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' stop-color='%231b5e20'/><stop offset='100%' stop-color='%23002200'/></linearGradient></defs><rect width='100%' height='100%' fill='url(%23gtav)'/><circle cx='200' cy='110' r='70' fill='none' stroke='%2300e676' stroke-width='2' opacity='0.4'/><text x='50%' y='45%' dominant-baseline='middle' text-anchor='middle' fill='%23ffffff' font-family='sans-serif' font-size='24' font-weight='900'>GTA V MOBILE</text><text x='50%' y='65%' dominant-baseline='middle' text-anchor='middle' fill='%2300e676' font-family='sans-serif' font-size='14' font-weight='bold'>0.3 TEST BUILD</text></svg>" alt="Grand Theft Auto V Mobile">
+<div class="card-body">
+<div class="badge-container">
+<span class="badge">Open World</span>
+<span class="ram-badge"><i class="fas fa-memory"></i> Min RAM: 4GB</span>
+<span class="compat-badge"></span>
+</div>
+<h3>Grand Theft Auto V 0.3 Test</h3>
+<p>Size: Latest Version | APK Mod</p>
+<button class="download-btn" onclick="openDownloadModal('Grand Theft Auto V 0.3 Test', 'Latest APK', 'https://www.mediafire.com/file/y3vu6sad59phdzs/Grand_Theft_Auto_V_0.3_Test_1747391034_latestmodapks.com.apk/file')">
+<i class="fas fa-download"></i> Download APK
+</button>
+
+<div class="card-interactions">
+<div class="rating-like-bar">
+<div class="stars">
+<span class="star" data-value="1">★</span>
+<span class="star" data-value="2">★</span>
+<span class="star" data-value="3">★</span>
+<span class="star" data-value="4">★</span>
+<span class="star" data-value="5">★</span>
+</div>
+<button class="like-btn">
+<i class="fas fa-heart"></i> <span class="like-text">Like</span> (<span class="like-count">0</span>)
+</button>
+</div>
+<div class="comments-section">
+<h4>Comments</h4>
+<div class="comment-input-box">
+<input type="text" placeholder="Write a comment...">
+<button class="send-comment-btn">Send</button>
+</div>
+<div class="comments-list"></div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- 11: Poppy Playtime Chapter 1 -->
+<div class="game-card" data-category="horror" data-id="game-poppy" data-min-ram="3">
+<img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='220' viewBox='0 0 400 220'><defs><linearGradient id='poppy' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' stop-color='%230d47a1'/><stop offset='100%' stop-color='%23001040'/></linearGradient></defs><rect width='100%' height='100%' fill='url(%23poppy)'/><circle cx='160' cy='80' r='12' fill='%23ffffff'/><circle cx='240' cy='80' r='12' fill='%23ffffff'/><path d='M140 130 Q200 180 260 130' stroke='%23ff1744' stroke-width='8' fill='none'/><text x='50%' y='35%' dominant-baseline='middle' text-anchor='middle' fill='%2329b6f6' font-family='sans-serif' font-size='20' font-weight='bold'>POPPY PLAYTIME</text><text x='50%' y='82%' dominant-baseline='middle' text-anchor='middle' fill='%23ffffff' font-family='sans-serif' font-size='13'>CHAPTER 1</text></svg>" alt="Poppy Playtime Chapter 1">
+<div class="card-body">
+<div class="badge-container">
+<span class="badge">Horror</span>
+<span class="ram-badge"><i class="fas fa-memory"></i> Min RAM: 3GB</span>
+<span class="compat-badge"></span>
+</div>
+<h3>Poppy Playtime Chapter 1</h3>
+<p>Size: Mobile Edition | MOD APK</p>
+<button class="download-btn" onclick="openDownloadModal('Poppy Playtime Chapter 1', 'Mobile APK', 'https://poppy-playtime-chapter-1.latestmodapks.com/download/')">
+<i class="fas fa-download"></i> Download APK
+</button>
+
+<div class="card-interactions">
+<div class="rating-like-bar">
+<div class="stars">
+<span class="star" data-value="1">★</span>
+<span class="star" data-value="2">★</span>
+<span class="star" data-value="3">★</span>
+<span class="star" data-value="4">★</span>
+<span class="star" data-value="5">★</span>
+</div>
+<button class="like-btn">
+<i class="fas fa-heart"></i> <span class="like-text">Like</span> (<span class="like-count">0</span>)
+</button>
+</div>
+<div class="comments-section">
+<h4>Comments</h4>
+<div class="comment-input-box">
+<input type="text" placeholder="Write a comment...">
+<button class="send-comment-btn">Send</button>
+</div>
+<div class="comments-list"></div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- 12: GTA San Andreas Mobile -->
+<div class="game-card" data-category="open-world" data-id="game-gtasa-hd" data-min-ram="2">
+<img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='220' viewBox='0 0 400 220'><defs><linearGradient id='gtasa' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' stop-color='%23e65100'/><stop offset='100%' stop-color='%23212121'/></linearGradient></defs><rect width='100%' height='100%' fill='url(%23gtasa)'/><text x='50%' y='45%' dominant-baseline='middle' text-anchor='middle' fill='%23ffb74d' font-family='Georgia, serif' font-size='26' font-weight='bold'>GTA SAN ANDREAS</text><text x='50%' y='68%' dominant-baseline='middle' text-anchor='middle' fill='%23ffffff' font-family='sans-serif' font-size='13' letter-spacing='3'>REALISTIC GRAPHICS MOD</text></svg>" alt="GTA San Andreas">
+<div class="card-body">
+<div class="badge-container">
+<span class="badge">Open World</span>
+<span class="ram-badge"><i class="fas fa-memory"></i> Min RAM: 2GB</span>
+<span class="compat-badge"></span>
+</div>
+<h3>GTA San Andreas Mobile</h3>
+<p>Size: HD Mod | Full Version</p>
+<button class="download-btn" onclick="openDownloadModal('GTA San Andreas Mobile', 'Android Edition', 'https://playmods.net/game/gta-grand-theft-auto-realistic-graphics/com.rockstargames.gtasaMod6')">
+<i class="fas fa-download"></i> Download APK
+</button>
+
+<div class="card-interactions">
+<div class="rating-like-bar">
+<div class="stars">
+<span class="star" data-value="1">★</span>
+<span class="star" data-value="2">★</span>
+<span class="star" data-value="3">★</span>
+<span class="star" data-value="4">★</span>
+<span class="star" data-value="5">★</span>
+</div>
+<button class="like-btn">
+<i class="fas fa-heart"></i> <span class="like-text">Like</span> (<span class="like-count">0</span>)
+</button>
+</div>
+<div class="comments-section">
+<h4>Comments</h4>
+<div class="comment-input-box">
+<input type="text" placeholder="Write a comment...">
+<button class="send-comment-btn">Send</button>
+</div>
+<div class="comments-list"></div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- 13: Love College Brawl Hint -->
+<div class="game-card" data-category="action" data-id="game-college-brawl" data-min-ram="2">
+<img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='220' viewBox='0 0 400 220'><defs><linearGradient id='cb-bg' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' stop-color='%23880e4f'/><stop offset='50%' stop-color='%234a148c'/><stop offset='100%' stop-color='%230d47a1'/></linearGradient><linearGradient id='glow' x1='0%' y1='0%' x2='0%' y2='100%'><stop offset='0%' stop-color='%23ff4081'/><stop offset='100%' stop-color='%237c4dff'/></linearGradient></defs><rect width='100%' height='100%' fill='url(%23cb-bg)'/><circle cx='80' cy='50' r='90' fill='%23ff4081' opacity='0.15'/><circle cx='320' cy='170' r='100' fill='%237c4dff' opacity='0.2'/><path d='M200 35 L225 75 L270 82 L238 113 L245 158 L200 135 L155 158 L162 113 L130 82 L175 75 Z' fill='url(%23glow)' opacity='0.85'/><path d='M160 170 L240 170' stroke='%23ff80ab' stroke-width='4' stroke-linecap='round'/><text x='50%' y='42%' dominant-baseline='middle' text-anchor='middle' fill='%23ffffff' font-family='Arial Black, sans-serif' font-size='22' font-weight='900' letter-spacing='1'>COLLEGE BRAWL</text><text x='50%' y='62%' dominant-baseline='middle' text-anchor='middle' fill='%23ff80ab' font-family='sans-serif' font-size='15' font-weight='bold' letter-spacing='2'>HINT %26 GUIDE APK</text><rect x='120' y='175' width='160' height='22' rx='11' fill='%23000000' opacity='0.5'/><text x='50%' y='85%' dominant-baseline='middle' text-anchor='middle' fill='%2300e676' font-family='sans-serif' font-size='10' font-weight='bold'>VERIFIED SAFE APK</text></svg>" alt="Love College Brawl Hint">
+<div class="card-body">
+<div class="badge-container">
+<span class="badge">Action</span>
+<span class="ram-badge"><i class="fas fa-memory"></i> Min RAM: 2GB</span>
+<span class="compat-badge"></span>
+</div>
+<h3>Love College Brawl Hint</h3>
+<p>Size: Android Guide & APK</p>
+<button class="download-btn" onclick="openDownloadModal('Love College Brawl Hint', 'Android Pack', 'https://love-collegebrawl-hint.en.softonic.com/android')">
+<i class="fas fa-download"></i> Download APK
+</button>
+
+<div class="card-interactions">
+<div class="rating-like-bar">
+<div class="stars">
+<span class="star" data-value="1">★</span>
+<span class="star" data-value="2">★</span>
+<span class="star" data-value="3">★</span>
+<span class="star" data-value="4">★</span>
+<span class="star" data-value="5">★</span>
+</div>
+<button class="like-btn">
+<i class="fas fa-heart"></i> <span class="like-text">Like</span> (<span class="like-count">0</span>)
+</button>
+</div>
+<div class="comments-section">
+<h4>Comments</h4>
+<div class="comment-input-box">
+<input type="text" placeholder="Write a comment...">
+<button class="send-comment-btn">Send</button>
+</div>
+<div class="comments-list"></div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- 14: Hitman: Blood Money Reprisal -->
+<div class="game-card" data-category="action" data-id="game-hitman" data-min-ram="4">
+<img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='220' viewBox='0 0 400 220'><defs><linearGradient id='hitman' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' stop-color='%23212121'/><stop offset='100%' stop-color='%23000000'/></linearGradient></defs><rect width='100%' height='100%' fill='url(%23hitman)'/><circle cx='200' cy='110' r='50' fill='none' stroke='%23d50000' stroke-width='4'/><line x1='200' y1='40' x2='200' y2='180' stroke='%23d50000' stroke-width='2'/><line x1='130' y1='110' x2='270' y2='110' stroke='%23d50000' stroke-width='2'/><text x='50%' y='45%' dominant-baseline='middle' text-anchor='middle' fill='%23ffffff' font-family='sans-serif' font-size='22' font-weight='bold'>HITMAN</text><text x='50%' y='65%' dominant-baseline='middle' text-anchor='middle' fill='%23ff5252' font-family='sans-serif' font-size='13' letter-spacing='2'>BLOOD MONEY REPRISAL</text></svg>" alt="Hitman: Blood Money Reprisal">
+<div class="card-body">
+<div class="badge-container">
+<span class="badge">Action</span>
+<span class="ram-badge"><i class="fas fa-memory"></i> Min RAM: 4GB</span>
+<span class="compat-badge"></span>
+</div>
+<h3>Hitman: Blood Money Reprisal</h3>
+<p>Size: v1.3.1 | APKMirror</p>
+<button class="download-btn" onclick="openDownloadModal('Hitman: Blood Money Reprisal', 'Full APK', 'https://www.apkmirror.com/apk/feral-interactive/hitman-blood-money-reprisal-game/hitman-blood-money-reprisal-1-3-1rc4-release/hitman-blood-money-reprisal-1-3-1rc4-apk-android-apk-download/')">
+<i class="fas fa-download"></i> Download APK
+</button>
+
+<div class="card-interactions">
+<div class="rating-like-bar">
+<div class="stars">
+<span class="star" data-value="1">★</span>
+<span class="star" data-value="2">★</span>
+<span class="star" data-value="3">★</span>
+<span class="star" data-value="4">★</span>
+<span class="star" data-value="5">★</span>
+</div>
+<button class="like-btn">
+<i class="fas fa-heart"></i> <span class="like-text">Like</span> (<span class="like-count">0</span>)
+</button>
+</div>
+<div class="comments-section">
+<h4>Comments</h4>
+<div class="comment-input-box">
+<input type="text" placeholder="Write a comment...">
+<button class="send-comment-btn">Send</button>
+</div>
+<div class="comments-list"></div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- 15: Chuchu Charles Mobile -->
+<div class="game-card" data-category="horror" data-id="game-chuchu-charles" data-min-ram="3">
+<img src="data:image/svg+xml;utf-8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='440' viewBox='0 0 800 440'><defs><linearGradient id='chuchuBg' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' stop-color='%23030b1b'/><stop offset='55%' stop-color='%23101f3d'/><stop offset='100%' stop-color='%23090000'/></linearGradient><radialGradient id='chuchuGlow'><stop offset='0%' stop-color='%23ff3b30' stop-opacity='.9'/><stop offset='100%' stop-color='%23ff0000' stop-opacity='0'/></radialGradient></defs><rect width='800' height='440' fill='url(%23chuchuBg)'/><circle cx='650' cy='90' r='62' fill='%23dbeafe' opacity='.85'/><circle cx='520' cy='220' r='180' fill='url(%23chuchuGlow)'/><path d='M80 390 L720 390' stroke='%235b6475' stroke-width='8'/><path d='M130 350 L670 350 M150 390 L150 415 M270 390 L270 415 M390 390 L390 415 M510 390 L510 415 M630 390 L630 415' stroke='%23717b8c' stroke-width='6'/><rect x='300' y='125' width='205' height='185' rx='24' fill='%232b3448' stroke='%23e11d48' stroke-width='5'/><path d='M300 170 L230 95 L180 120 L245 220 M505 170 L575 95 L625 120 L560 220 M300 280 L205 335 L160 300 M505 280 L600 335 L645 300' fill='none' stroke='%23111827' stroke-width='28' stroke-linecap='round'/><circle cx='402' cy='205' r='92' fill='%234b5563' stroke='%23f43f5e' stroke-width='5'/><circle cx='370' cy='185' r='14' fill='%23ff334f'/><circle cx='434' cy='185' r='14' fill='%23ff334f'/><path d='M342 235 Q402 290 462 235' fill='none' stroke='%23f8fafc' stroke-width='12'/><path d='M355 246 L365 265 M380 258 L388 279 M414 258 L422 279 M439 246 L449 265' stroke='%23f8fafc' stroke-width='5'/><text x='38' y='68' fill='%23ffffff' font-family='sans-serif' font-size='29' font-weight='900' letter-spacing='3'>BAKWAS BAATE 2.0</text><text x='40' y='125' fill='%23f8fafc' font-family='sans-serif' font-size='43' font-weight='900'>CHUCHU</text><text x='40' y='175' fill='%23ef3340' font-family='sans-serif' font-size='48' font-weight='900'>CHARLES</text><text x='40' y='215' fill='%23cbd5e1' font-family='sans-serif' font-size='17'>SURVIVE THE NIGHT</text><text x='400' y='425' text-anchor='middle' fill='%23ffffff' font-family='sans-serif' font-size='17' font-weight='bold' letter-spacing='3'>MOBILE HORROR ADVENTURE • VERSION 1.0</text></svg>" alt="Chuchu Charles Mobile Horror Banner">
+<div class="card-body">
+<div class="badge-container">
+<span class="badge">Horror</span>
+<span class="ram-badge"><i class="fas fa-memory"></i> Min RAM: 3GB</span>
+<span class="compat-badge"></span>
+</div>
+<h3>Chuchu Charles</h3>
+<p>Mobile Horror Adventure | Version 1.0 APK</p>
+<button class="download-btn" onclick="openDownloadModal('Chuchu Charles', 'Version 1.0 APK', 'https://www.mediafire.com/file/uw7w3c1waprz185/choo-choo-charles_1.0-an1.com.apk/file')">
+<i class="fas fa-download"></i> Download APK
+</button>
+
+<div class="card-interactions">
+<div class="rating-like-bar">
+<div class="stars">
+<span class="star" data-value="1">★</span>
+<span class="star" data-value="2">★</span>
+<span class="star" data-value="3">★</span>
+<span class="star" data-value="4">★</span>
+<span class="star" data-value="5">★</span>
+</div>
+<button class="like-btn">
+<i class="fas fa-heart"></i> <span class="like-text">Like</span> (<span class="like-count">0</span>)
+</button>
+</div>
+<div class="comments-section">
+<h4>Comments</h4>
+<div class="comment-input-box">
+<input type="text" placeholder="Write a comment...">
+<button class="send-comment-btn">Send</button>
+</div>
+<div class="comments-list"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="about-section">
+<div class="section-title">
+<h2>About Bakwas Baate 2.0</h2>
+<p>Your ultimate source for verified mobile games, custom mods, and high-performance gaming APKs.</p>
+</div>
+<div class="about-container">
+<p>Welcome to <strong>Bakwas Baate 2.0</strong>! We specialize in testing, modifying, and reviewing open-world, horror, action, and high-graphics mobile games for low-end and high-end Android smartphones alike.</p>
+<br>
+<p>Join our growing community on Instagram and Telegram to stay updated on new game releases, custom CLEO scripts, and exclusive content updates.</p>
+<div class="social-links">
+<a href="https://instagram.com" target="_blank" class="social-btn"><i class="fab fa-instagram"></i> Instagram</a>
+<a href="https://t.me" target="_blank" class="social-btn telegram"><i class="fab fa-telegram"></i> Telegram Channel</a>
+</div>
+</div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="contact-section">
+<div class="section-title">
+<h2>Contact Us</h2>
+<p>Have questions or game requests? Send us a message.</p>
+</div>
+<form class="contact-form" onsubmit="event.preventDefault(); alert('Message sent successfully!');">
+<div class="form-group">
+<input type="text" placeholder="Your Name" required>
+</div>
+<div class="form-group">
+<input type="email" placeholder="Your Email" required>
+</div>
+<div class="form-group">
+<textarea rows="5" placeholder="Your Message" required></textarea>
+</div>
+<button type="submit" class="btn-primary">Send Message</button>
+</form>
+</section>
+
+<!-- Modal Download Window -->
+<div class="modal" id="downloadModal">
+<div class="modal-content">
+<span class="close-btn" onclick="closeDownloadModal()">×</span>
+<h3 id="modalGameTitle">Game Download</h3>
+<p id="modalFileName" style="color: var(--accent-color); margin-top: 5px;"></p>
+<p class="modal-warning">
+<i class="fas fa-shield-alt"></i> Safe Link Verified by Bakwas Baate 2.0
+</p>
+<a id="modalConfirmBtn" href="#" target="_blank" class="btn-primary download-confirm">Proceed to Download Page</a>
+</div>
+</div>
+
+<!-- Footer -->
+<footer>
+<p>© 2026 Bakwas Baate 2.0. All Rights Reserved.</p>
+</footer>
+
+<!-- JavaScript Logic -->
 <script>
-const games=[
-['Red Dead Redemption','open-world',6,'Mobile Edition | Full Game Download','https://an1.com/7527-red-dead-redemption.html'],
-['Minecraft Pocket Edition','adventure',2,'Pocket Edition | MOD Unlocked APK','https://minecraft-pocket-edition-mod.latestmodapks.com/download/'],
-['Takashi Ninja Warrior','action',2,'Ultimate Shadow Ninja RPG | APK','https://apkpure.net/takashi-ninja-warrior/com.hg.takashi.ninjagames/download'],
-['GTA San Andreas Spider-Man Mod','open-world',3,'Modded APK and OBB Data','https://www.mediafire.com/file/0sk8ghetllk15oh/GTASA+2.00+AML1.2.4+FLA7.6.apk/file'],
-['Little Nightmares','horror',4,'Full Mobile Edition | APK','https://an1.com/7324-little-nightmares.html'],
-['GTA V Prologue','open-world',4,'Prologue Build | Android APK','https://liteapks.com/download/gta-v-prologue-78252'],
-['GTA IV Mobile Edition','open-world',4,'Android Edition | Full APK','https://gta-4-mobile-edition-1.en.softonic.com/android'],
-['Life is Strange MOD','adventure',3,'Unlocked Chapters | MOD APK','https://an1.com/4785-life-is-strange-mod.html'],
-['Resident Evil 4 Mobile Edition','horror',2,'Full Game | APK MOD','#'],
-['Grand Theft Auto V 0.3 Test','open-world',4,'Latest Version | APK Mod','https://www.mediafire.com/file/y3vu6sad59phdzs/Grand_Theft_Auto_V_0.3_Test_1747391034_latestmodapks.com.apk/file'],
-['Poppy Playtime Chapter 1','horror',3,'Mobile Edition | MOD APK','https://poppy-playtime-chapter-1.latestmodapks.com/download/'],
-['GTA San Andreas Mobile','open-world',2,'HD Mod | Full Version','https://playmods.net/game/gta-grand-theft-auto-realistic-graphics/com.rockstargames.gtasaMod6'],
-['Love College Brawl Hint','action',2,'Android Guide & APK','https://love-collegebrawl-hint.en.softonic.com/android'],
-['Hitman: Blood Money Reprisal','action',4,'Stealth Action | Android Edition','https://an1.com/8321-hitman-blood-money-reprisal.html'],
-['Choo Choo Charles','horror',3,'Horror Survival | Mobile Edition | APK','https://www.mediafire.com/file/uw7w3c1waprz185/choo-choo-charles_1.0-an1.com.apk/file']
-];
-const container=document.getElementById('games-container');
-function safeId(t){return 'game-'+t.toLowerCase().replace(/[^a-z0-9]+/g,'-')}
-function makeCard(g){
-const [title,category,ram,desc,url]=g,id=safeId(title);
-const card=document.createElement('div');card.className='game-card';card.dataset.category=category;card.dataset.minRam=ram;card.dataset.id=id;
-card.innerHTML=`<div class="game-banner"><div><h3>${title}</h3><small>${category.toUpperCase()} • MIN RAM ${ram}GB</small></div></div><div class="card-body"><div class="badge-container"><span class="badge">${category}</span><span class="ram-badge"><i class="fas fa-memory"></i> Min RAM: ${ram}GB</span><span class="compat-badge"></span></div><h3>${title}</h3><p>${desc}</p><button class="download-btn"><i class="fas fa-download"></i> Download APK</button><div class="card-interactions"><div class="rating-like-bar"><div class="stars">${[1,2,3,4,5].map(n=>`<span class="star" data-value="${n}">&#9733;</span>`).join('')}</div><button class="like-btn"><i class="fas fa-heart"></i> <span class="like-text">Like</span> (<span class="like-count">0</span>)</button></div><div class="comments-section"><h4>Comments</h4><div class="comment-input-box"><input placeholder="Write a comment..."><button class="send-comment-btn">Send</button></div><div class="comments-list"></div></div></div></div>`;
-card.querySelector('.download-btn').onclick=()=>openDownloadModal(title,'Mobile APK',url);
-container.appendChild(card);setupCard(card);
+// Mobile Navigation Toggle
+const mobileMenu = document.getElementById('mobile-menu');
+const navMenu = id => document.getElementById('nav-menu');
+mobileMenu.addEventListener('click', () => {
+document.getElementById('nav-menu').classList.toggle('active');
+});
+
+// Search & Category Filtering
+const searchInput = document.getElementById('search-input');
+const filterBtns = document.querySelectorAll('.filter-btn');
+const gameCards = document.querySelectorAll('.game-card');
+const userRamSelect = document.getElementById('user-ram-select');
+
+let currentCategory = 'all';
+
+filterBtns.forEach(btn => {
+btn.addEventListener('click', () => {
+filterBtns.forEach(b => b.classList.remove('active'));
+btn.classList.add('active');
+currentCategory = btn.getAttribute('data-category');
+filterGames();
+});
+});
+
+searchInput.addEventListener('input', filterGames);
+userRamSelect.addEventListener('change', filterGames);
+
+function filterGames() {
+const query = searchInput.value.toLowerCase().trim();
+const userRam = parseInt(userRamSelect.value, 10);
+
+gameCards.forEach(card => {
+const title = card.querySelector('h3').textContent.toLowerCase();
+const category = card.getAttribute('data-category');
+const minRam = parseInt(card.getAttribute('data-min-ram'), 10);
+const compatBadge = card.querySelector('.compat-badge');
+
+const matchesCategory = (currentCategory === 'all' || category === currentCategory);
+const matchesSearch = title.includes(query);
+
+if (matchesCategory && matchesSearch) {
+card.style.display = 'flex';
+} else {
+card.style.display = 'none';
 }
-function setupCard(card){
-const id=card.dataset.id,like=card.querySelector('.like-btn'),text=card.querySelector('.like-text'),count=card.querySelector('.like-count');
-let liked=localStorage.getItem(id+'_liked')==='true',likes=+localStorage.getItem(id+'_likeCount')||0;
-count.textContent=likes;if(liked){like.classList.add('liked');text.textContent='Liked'}
-like.onclick=()=>{liked=!liked;likes=Math.max(0,likes+(liked?1:-1));like.classList.toggle('liked',liked);text.textContent=liked?'Liked':'Like';count.textContent=likes;localStorage.setItem(id+'_liked',liked);localStorage.setItem(id+'_likeCount',likes)};
-const stars=card.querySelectorAll('.star'),rating=+localStorage.getItem(id+'_rating')||0;
-function paint(n){stars.forEach((s,i)=>s.classList.toggle('active',i<n))}paint(rating);
-stars.forEach(s=>s.onclick=()=>{const n=+s.dataset.value;localStorage.setItem(id+'_rating',n);paint(n)});
-const list=card.querySelector('.comments-list'),input=card.querySelector('.comment-input-box input');
-let comments=JSON.parse(localStorage.getItem(id+'_comments')||'[]');
-function render(){list.innerHTML='';comments.forEach(c=>{const d=document.createElement('div');d.className='comment-item';d.textContent=c;list.appendChild(d)})}render();
-function add(){const v=input.value.trim();if(!v)return;comments.push(v);localStorage.setItem(id+'_comments',JSON.stringify(comments));input.value='';render()}
-card.querySelector('.send-comment-btn').onclick=add;input.onkeydown=e=>{if(e.key==='Enter')add()}
+
+// RAM Compatibility Check Logic
+if (userRam > 0) {
+if (userRam >= minRam) {
+compatBadge.textContent = "✔ Smooth Play";
+compatBadge.className = "compat-badge smooth";
+} else {
+compatBadge.textContent = "⚠ May Lag";
+compatBadge.className = "compat-badge lag";
 }
-games.forEach(makeCard);
-const search=document.getElementById('search-input'),ram=document.getElementById('user-ram-select'),filters=document.querySelectorAll('.filter-btn');
-function filterGames(){const term=search.value.toLowerCase().trim(),cat=document.querySelector('.filter-btn.active').dataset.category,user=+ram.value;document.querySelectorAll('.game-card').forEach(c=>{const title=c.querySelector('h3').textContent.toLowerCase(),ok=title.includes(term)&&(cat==='all'||c.dataset.category===cat);c.style.display=ok?'flex':'none';const badge=c.querySelector('.compat-badge');if(user){const good=user>=+c.dataset.minRam;badge.textContent=good?'✓ Runs Smoothly':'⚠ May Lag';badge.className='compat-badge '+(good?'smooth':'lag')}else{badge.textContent='';badge.className='compat-badge'}})}
-search.oninput=filterGames;ram.onchange=filterGames;filters.forEach(b=>b.onclick=()=>{filters.forEach(x=>x.classList.remove('active'));b.classList.add('active');filterGames()});
-document.getElementById('mobile-menu').onclick=()=>document.getElementById('nav-menu').classList.toggle('active');
-function openDownloadModal(title,type,url){document.getElementById('modalGameTitle').textContent=title;document.getElementById('modalFileType').textContent=type;document.getElementById('modalDownloadLink').href=url;document.getElementById('downloadModal').style.display='flex'}
-function closeDownloadModal(){document.getElementById('downloadModal').style.display='none'}
-window.onclick=e=>{if(e.target===document.getElementById('downloadModal'))closeDownloadModal()}
+} else {
+compatBadge.style.display = "none";
+}
+});
+}
+
+// Modal Functionality
+function openDownloadModal(title, fileName, url) {
+document.getElementById('modalGameTitle').textContent = title;
+document.getElementById('modalFileName').textContent = fileName;
+document.getElementById('modalConfirmBtn').setAttribute('href', url);
+document.getElementById('downloadModal').style.display = 'flex';
+}
+
+function closeDownloadModal() {
+document.getElementById('downloadModal').style.display = 'none';
+}
+
+window.onclick = function(event) {
+const modal = document.getElementById('downloadModal');
+if (event.target === modal) {
+modal.style.display = 'none';
+}
+};
+
+// Local Storage State & Interactions (Likes, Ratings, Comments)
+document.addEventListener('DOMContentLoaded', () => {
+gameCards.forEach(card => {
+const gameId = card.getAttribute('data-id');
+const stars = card.querySelectorAll('.star');
+const likeBtn = card.querySelector('.like-btn');
+const likeCountSpan = card.querySelector('.like-count');
+const sendCommentBtn = card.querySelector('.send-comment-btn');
+const commentInput = card.querySelector('.comment-input-box input');
+const commentsList = card.querySelector('.comments-list');
+
+// Load saved state
+let savedData = JSON.parse(localStorage.getItem('bb2_game_' + gameId)) || {
+likes: 0,
+isLiked: false,
+rating: 0,
+comments: []
+};
+
+likeCountSpan.textContent = savedData.likes;
+if (savedData.isLiked) {
+likeBtn.classList.add('liked');
+likeBtn.querySelector('.like-text').textContent = 'Liked';
+}
+
+highlightStars(stars, savedData.rating);
+renderComments(commentsList, savedData.comments);
+
+// Like Button Toggle
+likeBtn.addEventListener('click', () => {
+savedData.isLiked = !savedData.isLiked;
+if (savedData.isLiked) {
+savedData.likes += 1;
+likeBtn.classList.add('liked');
+likeBtn.querySelector('.like-text').textContent = 'Liked';
+} else {
+savedData.likes = Math.max(0, savedData.likes - 1);
+likeBtn.classList.remove('liked');
+likeBtn.querySelector('.like-text').textContent = 'Like';
+}
+likeCountSpan.textContent = savedData.likes;
+localStorage.setItem('bb2_game_' + gameId, JSON.stringify(savedData));
+});
+
+// Rating Event
+stars.forEach(star => {
+star.addEventListener('click', () => {
+const val = parseInt(star.getAttribute('data-value'), 10);
+savedData.rating = val;
+highlightStars(stars, val);
+localStorage.setItem('bb2_game_' + gameId, JSON.stringify(savedData));
+});
+});
+
+// Comment Submission Event
+sendCommentBtn.addEventListener('click', () => {
+const text = commentInput.value.trim();
+if (text !== "") {
+savedData.comments.push(text);
+renderComments(commentsList, savedData.comments);
+commentInput.value = "";
+localStorage.setItem('bb2_game_' + gameId, JSON.stringify(savedData));
+}
+});
+});
+});
+
+function highlightStars(stars, rating) {
+stars.forEach(s => {
+const val = parseInt(s.getAttribute('data-value'), 10);
+if (val <= rating) {
+s.classList.add('active');
+} else {
+s.classList.remove('active');
+}
+});
+}
+
+function renderComments(container, comments) {
+container.innerHTML = "";
+comments.forEach(c => {
+const div = document.createElement('div');
+div.className = 'comment-item';
+div.textContent = c;
+container.appendChild(div);
+});
+}
 </script>
 </body>
 </html>
