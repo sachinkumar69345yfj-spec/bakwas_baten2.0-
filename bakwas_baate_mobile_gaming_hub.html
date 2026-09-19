@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bakwas Baate 2.0 - Gaming Hub</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root{--bg:#0d0f12;--card:#161b22;--green:#00e676;--text:#fff;--muted:#9da7b3;--border:#26313b}
+*{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:Segoe UI,Arial,sans-serif;line-height:1.5}
+.navbar{position:sticky;top:0;z-index:1000;display:flex;justify-content:space-between;align-items:center;padding:15px 5%;background:#101820f5;border-bottom:1px solid var(--border)}
+.logo{font-size:clamp(18px,4vw,25px);font-weight:800}.logo span{color:var(--green)}
+.nav-links{display:flex;gap:20px;list-style:none}.nav-links a{color:var(--muted);text-decoration:none}.nav-links a:hover{color:var(--green)}
+.menu-toggle{display:none;font-size:24px;cursor:pointer}
+.hero{min-height:390px;display:grid;place-items:center;text-align:center;padding:50px 20px;background:linear-gradient(#0d0f12aa,#0d0f12),radial-gradient(circle,#164b59,#0d0f12 70%)}
+.hero h2{font-size:clamp(28px,5vw,48px);margin-bottom:15px}.hero p{max-width:650px;color:var(--muted);margin:0 auto 25px}
+.btn-primary{display:inline-block;background:var(--green);color:#000;padding:12px 25px;border:0;border-radius:8px;text-decoration:none;font-weight:800;cursor:pointer}
+section{padding:55px 5%}.section-title{text-align:center;margin-bottom:30px}.section-title h2{font-size:clamp(24px,4vw,34px)}.section-title p{color:var(--muted)}
+.controls{display:flex;flex-direction:column;align-items:center;gap:15px;margin-bottom:35px}
+#search-input{width:100%;max-width:500px;padding:14px;border:1px solid var(--border);border-radius:8px;background:var(--card);color:white;font-size:16px;outline:none}
+.filter-buttons{display:flex;flex-wrap:wrap;justify-content:center;gap:8px}.filter-btn{padding:9px 14px;background:var(--card);color:var(--muted);border:1px solid var(--border);border-radius:7px;cursor:pointer}.filter-btn.active,.filter-btn:hover{background:var(--green);color:#000}
+.ram-checker-box{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;background:var(--card);border:1px solid var(--green);padding:14px;border-radius:10px;width:100%;max-width:550px}
+.ram-checker-box select{background:#0d0f12;color:var(--green);border:1px solid var(--border);padding:9px;border-radius:6px;max-width:100%}
+.games-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px}
+.game-card{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;min-width:0;transition:.25s}.game-card:hover{transform:translateY(-4px)}
+.game-banner{height:190px;display:grid;place-items:center;text-align:center;padding:15px;background:linear-gradient(135deg,#163d48,#080b10);position:relative;overflow:hidden}
+.game-banner:before{content:"";position:absolute;width:180px;height:180px;border:2px solid #00e67655;border-radius:50%}
+.game-banner h3{font-size:clamp(18px,3vw,25px);position:relative;color:#fff;text-shadow:0 2px 8px #000}.game-banner small{display:block;color:var(--green);position:relative;font-weight:700}
+.card-body{padding:18px;display:flex;flex-direction:column;flex:1}.badge-container{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}.badge,.ram-badge,.compat-badge{padding:4px 8px;border-radius:5px;font-size:12px;font-weight:700}.badge{color:var(--green);background:#00e67620}.ram-badge{color:#29b6f6;background:#2196f320}.compat-badge.smooth{display:inline-block;color:var(--green);border:1px solid var(--green)}.compat-badge.lag{display:inline-block;color:#ff5252;border:1px solid #ff5252}
+.card-body h3{font-size:19px;margin-bottom:6px}.card-body p{color:var(--muted);font-size:14px;margin-bottom:15px}
+.download-btn{width:100%;padding:12px;border:1px solid var(--green);border-radius:8px;background:transparent;color:var(--green);font-weight:800;cursor:pointer;margin-bottom:12px}.download-btn:hover{background:var(--green);color:#000}
+.card-interactions{border-top:1px solid var(--border);padding-top:12px;margin-top:auto}.rating-like-bar{display:flex;justify-content:space-between;align-items:center;gap:8px}.stars{display:flex;gap:3px}.star{color:#555;font-size:20px;cursor:pointer}.star.active{color:#ffc107}
+.like-btn{background:#21262d;color:#fff;border:1px solid var(--border);padding:6px 10px;border-radius:18px;cursor:pointer;font-size:12px}.like-btn.liked{background:#dc3545}
+.comments-section{border-top:1px dashed var(--border);margin-top:12px;padding-top:10px}.comments-section h4{font-size:14px;color:var(--muted);margin-bottom:7px}.comment-input-box{display:flex;gap:6px}.comment-input-box input{min-width:0;flex:1;padding:9px;background:#0d0f12;color:#fff;border:1px solid var(--border);border-radius:6px}.comment-input-box button{padding:8px 10px;background:var(--green);border:0;border-radius:6px;font-weight:700}.comments-list{max-height:90px;overflow:auto;margin-top:8px}.comment-item{background:#0d0f12;padding:6px;border-radius:5px;font-size:12px;color:var(--muted);margin-bottom:4px;word-break:break-word}
+.about-container{max-width:850px;margin:auto;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:25px}.social-links{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}.social-btn{padding:10px 15px;border-radius:7px;color:#fff;text-decoration:none;background:#e1306c;font-size:14px;font-weight:700}.telegram{background:#0088cc}
+.contact-form{max-width:600px;margin:auto;display:flex;flex-direction:column;gap:14px}.contact-form input,.contact-form textarea{width:100%;padding:13px;background:var(--card);border:1px solid var(--border);border-radius:7px;color:#fff;resize:vertical}
+.modal{display:none;position:fixed;inset:0;z-index:2000;background:#000d;align-items:center;justify-content:center;padding:20px}.modal-content{position:relative;background:var(--card);border:1px solid var(--green);border-radius:12px;padding:30px;max-width:450px;width:100%;text-align:center}.close-btn{position:absolute;right:15px;top:8px;font-size:30px;color:var(--muted);cursor:pointer}.modal-warning{color:var(--muted);font-size:13px;margin:15px 0}
+footer{text-align:center;padding:22px;border-top:1px solid var(--border);color:var(--muted);font-size:13px}
+@media(max-width:768px){
+.navbar{padding:12px 16px}.menu-toggle{display:block}.nav-links{display:none;position:absolute;top:59px;left:0;width:100%;padding:15px 20px;background:#161b22;flex-direction:column;gap:14px;border-bottom:1px solid var(--border)}.nav-links.active{display:flex}
+.hero{min-height:340px;padding:35px 16px}.hero h2{font-size:30px}.hero p{font-size:14px}
+section{padding:40px 14px}.games-grid{grid-template-columns:1fr;gap:16px}.game-banner{height:175px}.card-body{padding:15px}.rating-like-bar{align-items:flex-start}.ram-checker-box{align-items:stretch;flex-direction:column;text-align:center}.ram-checker-box select{width:100%}.filter-buttons{gap:6px}.filter-btn{font-size:12px;padding:8px 10px}
+}
+@media(min-width:769px) and (max-width:1050px){.games-grid{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<header class="navbar">
+<div class="logo">Bakwas Baate <span>2.0</span></div>
+<nav><ul class="nav-links" id="nav-menu">
+<li><a href="#home">Home</a></li><li><a href="#games">Games & APKs</a></li><li><a href="#about">About Us</a></li><li><a href="#contact">Contact</a></li>
+</ul></nav>
+<div class="menu-toggle" id="mobile-menu"><i class="fas fa-bars"></i></div>
+</header>
+
+<section class="hero" id="home"><div>
+<h2>Welcome to Official Gaming Vault</h2>
+<p>Download mobile games, mods and APKs from Bakwas Baate 2.0.</p>
+<a href="#games" class="btn-primary">Explore Games</a>
+</div></section>
+
+<section id="games">
+<div class="section-title"><h2>Featured Games & APK Downloads</h2><p>Select your favorite game and download files.</p></div>
+<div class="controls">
+<input id="search-input" placeholder="Search games...">
+<div class="filter-buttons">
+<button class="filter-btn active" data-category="all">All</button><button class="filter-btn" data-category="open-world">Open World</button><button class="filter-btn" data-category="action">Action</button><button class="filter-btn" data-category="horror">Horror</button><button class="filter-btn" data-category="adventure">Adventure</button>
+</div>
+<div class="ram-checker-box"><label><i class="fas fa-mobile-alt"></i> Select Your Phone RAM:</label><select id="user-ram-select"><option value="0">All Games</option><option value="2">2 GB RAM</option><option value="3">3 GB RAM</option><option value="4">4 GB RAM</option><option value="6">6 GB RAM or Higher</option></select></div>
+</div>
+<div class="games-grid" id="games-container"></div>
+</section>
+
+<section id="about"><div class="section-title"><h2>About Us</h2><p>Learn more about Bakwas Baate 2.0</p></div><div class="about-container">
+<h3>Welcome to Bakwas Baate 2.0!</h3><p>Your gaming destination for mobile games, Android ports, scripts and APK recommendations. Always scan downloaded files and check permissions before installing.</p>
+<div class="social-links"><a class="social-btn" href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i> Instagram</a><a class="social-btn telegram" href="https://t.me" target="_blank"><i class="fab fa-telegram"></i> Telegram</a></div>
+</div></section>
+
+<section id="contact"><div class="section-title"><h2>Contact Us</h2><p>Have questions or game requests?</p></div><form class="contact-form" onsubmit="event.preventDefault();alert('Message sent successfully!')">
+<input placeholder="Your Name" required><input type="email" placeholder="Your Email" required><textarea rows="5" placeholder="Your Message or Game Request..." required></textarea><button class="btn-primary" type="submit">Send Message</button>
+</form></section>
+
+<div class="modal" id="downloadModal"><div class="modal-content"><span class="close-btn" onclick="closeDownloadModal()">&times;</span><h3 id="modalGameTitle"></h3><p id="modalFileType" style="color:var(--green)"></p><p class="modal-warning"><i class="fas fa-shield-alt"></i> Check the source and scan files before installation.</p><a id="modalDownloadLink" class="btn-primary" href="#" target="_blank" onclick="closeDownloadModal()">Proceed to Download</a></div></div>
+<footer><p>&copy; 2026 Bakwas Baate 2.0. All Rights Reserved.</p></footer>
+
+<script>
+const games=[
+['Red Dead Redemption','open-world',6,'Mobile Edition | Full Game Download','https://an1.com/7527-red-dead-redemption.html'],
+['Minecraft Pocket Edition','adventure',2,'Pocket Edition | MOD Unlocked APK','https://minecraft-pocket-edition-mod.latestmodapks.com/download/'],
+['Takashi Ninja Warrior','action',2,'Ultimate Shadow Ninja RPG | APK','https://apkpure.net/takashi-ninja-warrior/com.hg.takashi.ninjagames/download'],
+['GTA San Andreas Spider-Man Mod','open-world',3,'Modded APK and OBB Data','https://www.mediafire.com/file/0sk8ghetllk15oh/GTASA+2.00+AML1.2.4+FLA7.6.apk/file'],
+['Little Nightmares','horror',4,'Full Mobile Edition | APK','https://an1.com/7324-little-nightmares.html'],
+['GTA V Prologue','open-world',4,'Prologue Build | Android APK','https://liteapks.com/download/gta-v-prologue-78252'],
+['GTA IV Mobile Edition','open-world',4,'Android Edition | Full APK','https://gta-4-mobile-edition-1.en.softonic.com/android'],
+['Life is Strange MOD','adventure',3,'Unlocked Chapters | MOD APK','https://an1.com/4785-life-is-strange-mod.html'],
+['Resident Evil 4 Mobile Edition','horror',2,'Full Game | APK MOD','#'],
+['Grand Theft Auto V 0.3 Test','open-world',4,'Latest Version | APK Mod','https://www.mediafire.com/file/y3vu6sad59phdzs/Grand_Theft_Auto_V_0.3_Test_1747391034_latestmodapks.com.apk/file'],
+['Poppy Playtime Chapter 1','horror',3,'Mobile Edition | MOD APK','https://poppy-playtime-chapter-1.latestmodapks.com/download/'],
+['GTA San Andreas Mobile','open-world',2,'HD Mod | Full Version','https://playmods.net/game/gta-grand-theft-auto-realistic-graphics/com.rockstargames.gtasaMod6'],
+['Love College Brawl Hint','action',2,'Android Guide & APK','https://love-collegebrawl-hint.en.softonic.com/android'],
+['Hitman: Blood Money Reprisal','action',4,'Stealth Action | Android Edition','https://an1.com/8321-hitman-blood-money-reprisal.html'],
+['Choo Choo Charles','horror',3,'Horror Survival | Mobile Edition | APK','https://www.mediafire.com/file/uw7w3c1waprz185/choo-choo-charles_1.0-an1.com.apk/file']
+];
+const container=document.getElementById('games-container');
+function safeId(t){return 'game-'+t.toLowerCase().replace(/[^a-z0-9]+/g,'-')}
+function makeCard(g){
+const [title,category,ram,desc,url]=g,id=safeId(title);
+const card=document.createElement('div');card.className='game-card';card.dataset.category=category;card.dataset.minRam=ram;card.dataset.id=id;
+card.innerHTML=`<div class="game-banner"><div><h3>${title}</h3><small>${category.toUpperCase()} • MIN RAM ${ram}GB</small></div></div><div class="card-body"><div class="badge-container"><span class="badge">${category}</span><span class="ram-badge"><i class="fas fa-memory"></i> Min RAM: ${ram}GB</span><span class="compat-badge"></span></div><h3>${title}</h3><p>${desc}</p><button class="download-btn"><i class="fas fa-download"></i> Download APK</button><div class="card-interactions"><div class="rating-like-bar"><div class="stars">${[1,2,3,4,5].map(n=>`<span class="star" data-value="${n}">&#9733;</span>`).join('')}</div><button class="like-btn"><i class="fas fa-heart"></i> <span class="like-text">Like</span> (<span class="like-count">0</span>)</button></div><div class="comments-section"><h4>Comments</h4><div class="comment-input-box"><input placeholder="Write a comment..."><button class="send-comment-btn">Send</button></div><div class="comments-list"></div></div></div></div>`;
+card.querySelector('.download-btn').onclick=()=>openDownloadModal(title,'Mobile APK',url);
+container.appendChild(card);setupCard(card);
+}
+function setupCard(card){
+const id=card.dataset.id,like=card.querySelector('.like-btn'),text=card.querySelector('.like-text'),count=card.querySelector('.like-count');
+let liked=localStorage.getItem(id+'_liked')==='true',likes=+localStorage.getItem(id+'_likeCount')||0;
+count.textContent=likes;if(liked){like.classList.add('liked');text.textContent='Liked'}
+like.onclick=()=>{liked=!liked;likes=Math.max(0,likes+(liked?1:-1));like.classList.toggle('liked',liked);text.textContent=liked?'Liked':'Like';count.textContent=likes;localStorage.setItem(id+'_liked',liked);localStorage.setItem(id+'_likeCount',likes)};
+const stars=card.querySelectorAll('.star'),rating=+localStorage.getItem(id+'_rating')||0;
+function paint(n){stars.forEach((s,i)=>s.classList.toggle('active',i<n))}paint(rating);
+stars.forEach(s=>s.onclick=()=>{const n=+s.dataset.value;localStorage.setItem(id+'_rating',n);paint(n)});
+const list=card.querySelector('.comments-list'),input=card.querySelector('.comment-input-box input');
+let comments=JSON.parse(localStorage.getItem(id+'_comments')||'[]');
+function render(){list.innerHTML='';comments.forEach(c=>{const d=document.createElement('div');d.className='comment-item';d.textContent=c;list.appendChild(d)})}render();
+function add(){const v=input.value.trim();if(!v)return;comments.push(v);localStorage.setItem(id+'_comments',JSON.stringify(comments));input.value='';render()}
+card.querySelector('.send-comment-btn').onclick=add;input.onkeydown=e=>{if(e.key==='Enter')add()}
+}
+games.forEach(makeCard);
+const search=document.getElementById('search-input'),ram=document.getElementById('user-ram-select'),filters=document.querySelectorAll('.filter-btn');
+function filterGames(){const term=search.value.toLowerCase().trim(),cat=document.querySelector('.filter-btn.active').dataset.category,user=+ram.value;document.querySelectorAll('.game-card').forEach(c=>{const title=c.querySelector('h3').textContent.toLowerCase(),ok=title.includes(term)&&(cat==='all'||c.dataset.category===cat);c.style.display=ok?'flex':'none';const badge=c.querySelector('.compat-badge');if(user){const good=user>=+c.dataset.minRam;badge.textContent=good?'✓ Runs Smoothly':'⚠ May Lag';badge.className='compat-badge '+(good?'smooth':'lag')}else{badge.textContent='';badge.className='compat-badge'}})}
+search.oninput=filterGames;ram.onchange=filterGames;filters.forEach(b=>b.onclick=()=>{filters.forEach(x=>x.classList.remove('active'));b.classList.add('active');filterGames()});
+document.getElementById('mobile-menu').onclick=()=>document.getElementById('nav-menu').classList.toggle('active');
+function openDownloadModal(title,type,url){document.getElementById('modalGameTitle').textContent=title;document.getElementById('modalFileType').textContent=type;document.getElementById('modalDownloadLink').href=url;document.getElementById('downloadModal').style.display='flex'}
+function closeDownloadModal(){document.getElementById('downloadModal').style.display='none'}
+window.onclick=e=>{if(e.target===document.getElementById('downloadModal'))closeDownloadModal()}
+</script>
+</body>
+</html>
